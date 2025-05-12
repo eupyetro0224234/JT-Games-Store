@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JT Games Store - Cuphead by JT Games</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f2f2f7;
+      color: #1c1c1e;
+    }
+
+    .store-header {
+      background-color: #fff;
+      padding: 2px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .store-logo {
+      width: 30px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    .app-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background: white;
+    }
+
+    .app-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .app-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 22px;
+      margin-right: 20px;
+    }
+
+    .app-info h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .developer {
+      color: #888;
+      margin: 5px 0;
+    }
+
+    .rating {
+      margin: 5px 0;
+    }
+
+    .download-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #007aff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .screenshots h3,
+    .description h3,
+    .whats-new h3,
+    .app-details h3 {
+      margin-top: 30px;
+      font-size: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    .screenshots-grid {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      overflow-x: auto;
+    }
+
+    .screenshots-grid img {
+      width: 240px;
+      height: 135px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .description p,
+    .whats-new p,
+    .app-details ul {
+      margin-top: 10px;
+    }
+
+    .app-details ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .app-details li {
+      margin-bottom: 5px;
+    }
+
+    .store-footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 20px;
+      color: #666;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <header class="store-header">
+    <alt="JT Games Hub" class="store-logo">
+    <h1>JT Games Store</h1>
+  </header>
+
+  <main class="app-container">
+    <section class="app-header">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDYVrtJU9Sto-xkAXZNoYfbVactu-RBfOccKBfp_w6XLJ9lBKohUwZlxw&s=10" alt="Ícone do app" class="app-icon">
+      <div class="app-info">
+        <h2>Cuphead by JT Games</h2>
+        <p class="developer">JT Games</p>
+        <p class="rating">
+  0,0 ★ • 
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdtayQvX41Qey_0be_TlPSXRshH21KclhkeQ&s" alt="Classificação 10+" style="vertical-align: middle; height: 18px; margin: 0 4px;">  • Ação/Plataforma
+</p>
+        <button class="download-btn">Pré-Registro</button>
+      </div>
+    </section>
+<!-- Adicione antes de </main> -->
+<div id="form-box" style="display:none; margin-top: 20px;">
+  <h3>Cadastre-se para ser notificado</h3>
+  <form action="https://formsubmit.co/contatojtgames@gmail.com" method="POST">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://jtgameshub.com/obrigado.html">
+
+    <label for="nome">Nome:</label><br>
+    <input type="text" name="nome" required style="width:100%; padding:8px; margin-bottom:10px;"><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" name="email" required style="width:100%; padding:8px; margin-bottom:10px;"><br>
+
+    <button type="submit" class="download-btn">Cadastrar</button>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.querySelector('.download-btn');
+    btn.addEventListener('click', function (e) {
+      e.preventDefault(); // evita qualquer ação padrão
+      const formBox = document.getElementById('form-box');
+      formBox.style.display = 'block';
+      btn.style.display = 'none'; // esconde o botão
+    });
+  });
+</script>
+    <section class="screenshots">
+      <h3>Capturas de Tela</h3>
+      <div class="screenshots-grid">
+        <img src="https://72a6c8fc75.cbaul-cdnwnd.com/87590e3df1550039f09c67b942fdb3ff/200000010-0ffd40ffd6/450/1000215602.jpeg" alt="Screenshot 1">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXucKnWc0W5Er4CirWS-Y9EaF_1yfsmaCFr_x9kmcWpxhO7QD8RbeR-t0&s=10" alt="Screenshot 2">
+        <img src="https://72a6c8fc75.cbaul-cdnwnd.com/87590e3df1550039f09c67b942fdb3ff/200000012-bfbb3bfbb4/450/1000214784.jpeg" alt="Screenshot 3">
+      </div>
+    </section>
+
+    <section class="description">
+      <h3>Sobre este jogo</h3>
+      <p>
+        Cuphead by JT Games traz a versão completa com a DLC The Delicious Last Course inclusa! Esta é uma versão não oficial. A nova personagem jogável, Srta. Cálice, e novos conteúdos estão disponíveis para uma experiência ainda mais desafiadora.
+Aviso: Versão não oficial e sem fins lucrativos.
+
+      </p>
+    </section>
+
+    <section class="whats-new">
+      <h3>Novidades</h3>
+     • Jogo Completo: Agora você pode aproveitar a experiência completa de Cuphead com todas as fases, chefões e mundos desbloqueados.
+     <p>• DLC The Delicious Last Course Inclusa: Explore novos conteúdos, com a personagem jogável Srta. Cálice e novos chefões desafiadores.</p>
+     <p>• Suporte a Gamepad: Controle a ação com total liberdade utilizando seu gamepad favorito, proporcionando uma jogabilidade mais fluida.</p>
+     <p>• Conquistas Inclusas: Desafie-se ainda mais com conquistas que testam suas habilidades e dedicação no jogo.
+     </p>
+</p>
+    </section>
+
+    <section class="app-details">
+      <h3>Informações</h3>
+      <ul>
+        <li>Tamanho: 4,9 GB</li>
+        <li>Compatível com Android 9.0 ou superior</li>
+        <li>Desenvolvedor: JT Games</li>
+        <li>Categoria: Ação / Plataforma</li>
+        <li>Classificação: 10+</li>
+        <li>Idiomas: Inglês | Português Brasil</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="store-footer">
+    <p>&copy; 2025 JT Games Hub. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
