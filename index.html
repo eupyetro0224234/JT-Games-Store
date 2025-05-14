@@ -1,213 +1,164 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JT Games Store - Cuphead by JT Games</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f2f2f7;
-      color: #1c1c1e;
-    }
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JT Games Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
 
-    .store-header {
-      background-color: #fff;
-      padding: 2px;
-      text-align: center;
-      border-bottom: 1px solid #ccc;
-    }
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg p-5 flex justify-between items-center">
+      <h1 class="text-3xl font-extrabold tracking-wide">
+        <a href="#">JT Games Store</a>
+      </h1>
+      <input
+        type="text"
+        placeholder="Buscar apps..."
+        class="p-2 rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-white text-gray-800"
+      />
+    </header>
 
-    .store-logo {
-      width: 30px;
-      vertical-align: middle;
-      margin-right: 10px;
-    }
+    <!-- Carrossel de Destaques estilo Play Store -->
+<section class="relative w-full mt-6 px-4">
+  <div class="overflow-hidden rounded-xl shadow-lg">
+    <div id="carousel" class="flex transition-transform duration-700 ease-in-out" style="transform: translateX(0%)">
+      <!-- Slide 1 -->
+      <div class="min-w-full relative">
+        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1117850/capsule_616x353.jpg?t=1709232767" alt="Cuphead Promo" class="w-full h-64 object-cover rounded-xl" />
+        <div class="absolute bottom-4 left-4 text-white bg-black/50 p-4 rounded-xl">
+          <h2 class="text-xl font-bold">Cuphead: Versão Completa</h2>
+          <button class="mt-2 bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg">Ver Detalhes</button>
+        </div>
+      </div>
 
-    .app-container {
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-      background: white;
-    }
+      <!-- Slide 2 -->
+      <div class="min-w-full relative">
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/367520/capsule_616x353.jpg?t=1712589799" alt="Hollow Knight" class="w-full h-64 object-cover rounded-xl" />
+        <div class="absolute bottom-4 left-4 text-white bg-black/50 p-4 rounded-xl">
+          <h2 class="text-xl font-bold"> Hollow Knight disponível em breve!</h2>
+        </div>
+      </div>
 
-    .app-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+      <!-- Slide 3 -->
+      <div class="min-w-full relative">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg?t=1746172589" alt="Five Nights" class="w-full h-64 object-cover rounded-xl" />
+        <div class="absolute bottom-4 left-4 text-white bg-black/50 p-4 rounded-xl">
+          <h2 class="text-xl font-bold">FNAF Into the Pit em breve!</h2>
+        </div>
+      </div>
+      
+      <!-- Slide 4 -->
+      <div class="min-w-full relative">
+        <img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000006442/691ba3e0801180a9864cc8a7694b6f98097f9d9799bc7e3dc6db92f086759252" alt="Five Nights" class="w-full h-64 object-cover rounded-xl" />
+        <div class="absolute bottom-4 left-4 text-white bg-black/50 p-4 rounded-xl">
+          <h2 class="text-xl font-bold">Celeste em breve!</h2>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    .app-icon {
-      width: 100px;
-      height: 100px;
-      border-radius: 22px;
-      margin-right: 20px;
-    }
+  <!-- Indicadores -->
+  <div class="flex justify-center mt-3 space-x-2">
+    <button onclick="goToSlide(0)" class="w-3 h-3 rounded-full bg-gray-400 hover:bg-gray-600" id="dot0"></button>
+    <button onclick="goToSlide(1)" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-600" id="dot1"></button>
+    <button onclick="goToSlide(2)" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-600" id="dot2"></button>
+    <button onclick="goToSlide(2)" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-600" id="dot3"></button>
+  </div>
+</section>
 
-    .app-info h2 {
-      margin: 0;
-      font-size: 24px;
-    }
 
-    .developer {
-      color: #888;
-      margin: 5px 0;
-    }
-
-    .rating {
-      margin: 5px 0;
-    }
-
-    .download-btn {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #007aff;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .screenshots h3,
-    .description h3,
-    .whats-new h3,
-    .app-details h3 {
-      margin-top: 30px;
-      font-size: 20px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 5px;
-    }
-
-    .screenshots-grid {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-      overflow-x: auto;
-    }
-
-    .screenshots-grid img {
-      width: 240px;
-      height: 135px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .description p,
-    .whats-new p,
-    .app-details ul {
-      margin-top: 10px;
-    }
-
-    .app-details ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .app-details li {
-      margin-bottom: 5px;
-    }
-
-    .store-footer {
-      text-align: center;
-      font-size: 14px;
-      padding: 20px;
-      color: #666;
-      background-color: #f9f9f9;
-    }
-  </style>
-</head>
-<body>
-  <header class="store-header">
-    <alt="JT Games Hub" class="store-logo">
-    <h1>JT Games Store</h1>
-  </header>
-
-  <main class="app-container">
-    <section class="app-header">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDYVrtJU9Sto-xkAXZNoYfbVactu-RBfOccKBfp_w6XLJ9lBKohUwZlxw&s=10" alt="Ícone do app" class="app-icon">
-      <div class="app-info">
-        <h2>Cuphead by JT Games</h2>
-        <p class="developer">JT Games</p>
-        <p class="rating">
-  0,0 ★ • 
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdtayQvX41Qey_0be_TlPSXRshH21KclhkeQ&s" alt="Classificação 10+" style="vertical-align: middle; height: 18px; margin: 0 4px;">  • Ação/Plataforma
-</p>
-        <button class="download-btn">Pré-Registro</button>
+      <!-- Botões -->
+      <div class="absolute top-1/2 left-4 transform -translate-y-1/2">
+        <button onclick="prevSlide()" class="bg-white text-gray-700 p-2 rounded-full shadow hover:bg-gray-200">◀</button>
+      </div>
+      <div class="absolute top-1/2 right-4 transform -translate-y-1/2">
+        <button onclick="nextSlide()" class="bg-white text-gray-700 p-2 rounded-full shadow hover:bg-gray-200">▶</button>
       </div>
     </section>
-<!-- Adicione antes de </main> -->
-<div id="form-box" style="display:none; margin-top: 20px;">
-  <h3>Cadastre-se para ser notificado</h3>
-  <form action="https://formsubmit.co/contatojtgames@gmail.com" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://jtgameshub.com/obrigado.html">
 
-    <label for="nome">Nome:</label><br>
-    <input type="text" name="nome" required style="width:100%; padding:8px; margin-bottom:10px;"><br>
+    <!-- Seção de Apps -->
+    <main class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- App 1 -->
+      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDYVrtJU9Sto-xkAXZNoYfbVactu-RBfOccKBfp_w6XLJ9lBKohUwZlxw&s=10"
+             alt="Cuphead" class="h-48 w-full object-cover" />
+        <div class="p-4">
+          <h3 class="font-bold text-lg">Cuphead By JT GAMES</h3>
+          <p class="text-sm text-gray-600 mt-1">Cuphead by JT Games traz a versão completa com a DLC The Delicious Last Course inclusa!</p>
+          <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            Pré-Registro
+          </button>
+        </div>
+      </div>
 
-    <label for="email">Email:</label><br>
-    <input type="email" name="email" required style="width:100%; padding:8px; margin-bottom:10px;"><br>
+      <!-- App 2 -->
+      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+        <img src="https://images.squarespace-cdn.com/content/v1/606d159a953867291018f801/1619987722169-VV6ZASHHZNRBJW9X0PLK/Key_Art_02_layeredjpg.jpg?format=1500w" alt="Hollow Knight" class="h-48 w-full object-cover" />
+        <div class="p-4">
+          <h3 class="font-bold text-lg">Hollow Knight By JT GAMES</h3>
+          <p class="text-sm text-gray-600 mt-1">Um jogo indie de gênero metroidvania desenvolvido e publicado pela Team Cherry</p>
+        </div>
+      </div>
 
-    <button type="submit" class="download-btn">Cadastrar</button>
-  </form>
-</div>
+      <!-- App 3 -->
+      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg?t=1746172589" alt="FNAF Into the Pit" class="h-48 w-full object-cover" />
+        <div class="p-4">
+          <h3 class="font-bold text-lg">Five Nights at Freddy's: Into the Pit By JT GAMES</h3>
+          <p class="text-sm text-gray-600 mt-1">Five Nights at Freddy's: Into the Pit é um jogo de terror e ação-aventura em 2D, inspirado na narrativa homônima "Into the Pit"</p>
+        </div>
+      </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const btn = document.querySelector('.download-btn');
-    btn.addEventListener('click', function (e) {
-      e.preventDefault(); // evita qualquer ação padrão
-      const formBox = document.getElementById('form-box');
-      formBox.style.display = 'block';
-      btn.style.display = 'none'; // esconde o botão
+      <!-- App 4 -->
+      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+        <img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000006442/691ba3e0801180a9864cc8a7694b6f98097f9d9799bc7e3dc6db92f086759252" alt="Celeste" class="h-48 w-full object-cover" />
+        <div class="p-4">
+          <h3 class="font-bold text-lg">Celeste By JT GAMES</h3>
+          <p class="text-sm text-gray-600 mt-1">Celeste é um jogo eletrônico de plataforma desenvolvido pelos canadenses Maddy Thorson e Noel Berry, com arte feita pelo estúdio brasileiro MiniBoss"</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="text-center p-6 mt-10 text-gray-500 text-sm">
+      &copy; 2025 JT Games Store. Todos os direitos reservados.
+    </footer>
+
+    <!-- Script do Carrossel -->
+  <script>
+  const carousel = document.getElementById("carousel");
+  const dots = [document.getElementById("dot0"), document.getElementById("dot1"), document.getElementById("dot2")];
+  let currentSlide = 0;
+  const totalSlides = carousel.children.length;
+
+  function updateSlide() {
+    carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("bg-gray-400", index === currentSlide);
+      dot.classList.toggle("bg-gray-300", index !== currentSlide);
     });
-  });
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    updateSlide();
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateSlide();
+  }
+
+  setInterval(nextSlide, 6000);
+  updateSlide(); // iniciar corretamente
 </script>
-    <section class="screenshots">
-      <h3>Capturas de Tela</h3>
-      <div class="screenshots-grid">
-        <img src="https://72a6c8fc75.cbaul-cdnwnd.com/87590e3df1550039f09c67b942fdb3ff/200000010-0ffd40ffd6/450/1000215602.jpeg" alt="Screenshot 1">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXucKnWc0W5Er4CirWS-Y9EaF_1yfsmaCFr_x9kmcWpxhO7QD8RbeR-t0&s=10" alt="Screenshot 2">
-        <img src="https://72a6c8fc75.cbaul-cdnwnd.com/87590e3df1550039f09c67b942fdb3ff/200000012-bfbb3bfbb4/450/1000214784.jpeg" alt="Screenshot 3">
-      </div>
-    </section>
-
-    <section class="description">
-      <h3>Sobre este jogo</h3>
-      <p>
-        Cuphead by JT Games traz a versão completa com a DLC The Delicious Last Course inclusa! Esta é uma versão não oficial. A nova personagem jogável, Srta. Cálice, e novos conteúdos estão disponíveis para uma experiência ainda mais desafiadora.
-Aviso: Versão não oficial e sem fins lucrativos.
-
-      </p>
-    </section>
-
-    <section class="whats-new">
-      <h3>Novidades</h3>
-     • Jogo Completo: Agora você pode aproveitar a experiência completa de Cuphead com todas as fases, chefões e mundos desbloqueados.
-     <p>• DLC The Delicious Last Course Inclusa: Explore novos conteúdos, com a personagem jogável Srta. Cálice e novos chefões desafiadores.</p>
-     <p>• Suporte a Gamepad: Controle a ação com total liberdade utilizando seu gamepad favorito, proporcionando uma jogabilidade mais fluida.</p>
-     <p>• Conquistas Inclusas: Desafie-se ainda mais com conquistas que testam suas habilidades e dedicação no jogo.
-     </p>
-</p>
-    </section>
-
-    <section class="app-details">
-      <h3>Informações</h3>
-      <ul>
-        <li>Tamanho: 4,9 GB</li>
-        <li>Compatível com Android 9.0 ou superior</li>
-        <li>Desenvolvedor: JT Games</li>
-        <li>Categoria: Ação / Plataforma</li>
-        <li>Classificação: 10+</li>
-        <li>Idiomas: Inglês | Português Brasil</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="store-footer">
-    <p>&copy; 2025 JT Games Hub. Todos os direitos reservados.</p>
-  </footer>
-</body>
+  </body>
 </html>
