@@ -1,164 +1,291 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JT Games Store</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-      }
-    </style>
-  </head>
-  <body class="bg-gray-100 text-gray-800">
+<!DOCTYPE html><html lang="pt-br">  <head><meta charset="UTF-8" />
 
-    <!-- Header -->
-    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg p-5 flex justify-between items-center">
-      <h1 class="text-3xl font-extrabold tracking-wide">
-        <a href="#">JT Games Store</a>
-      </h1>
-      <input
-        type="text"
-        placeholder="Buscar apps..."
-        class="p-2 rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-white text-gray-800"
-      />
-    </header>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Carrossel de Destaques estilo Play Store -->
-<section class="relative w-full mt-6 px-4">
-  <div class="overflow-hidden rounded-xl shadow-lg">
-    <div id="carousel" class="flex transition-transform duration-700 ease-in-out" style="transform: translateX(0%)">
-      <!-- Slide 1 -->
-      <div class="min-w-full relative">
-        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1117850/capsule_616x353.jpg?t=1709232767" alt="Cuphead Promo" class="w-full h-64 object-cover rounded-xl" />
-        <div class="absolute bottom-4 left-4 text-white bg-black/50 p-4 rounded-xl">
-          <h2 class="text-xl font-bold">Cuphead: Versão Completa</h2>
-         <a href="Cuphead.html" class="mt-2 inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg">Ver Detalhes</a>
-        </div>
-      </div>
+<title>JT Games Store</title>
 
-      <!-- Slide 2 -->
-      <div class="min-w-full relative">
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/367520/capsule_616x353.jpg?t=1712589799" alt="Hollow Knight" class="w-full h-64 object-cover rounded-xl" />
-        <div class="absolute bottom-4 left-4 text-white bg-black/50 p-4 rounded-xl">
-          <h2 class="text-xl font-bold"> Hollow Knight disponível em breve!</h2>
-        </div>
-      </div>
+<script src="https://cdn.tailwindcss.com"></script>
 
-      <!-- Slide 3 -->
-      <div class="min-w-full relative">
-        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg?t=1746172589" alt="Five Nights" class="w-full h-64 object-cover rounded-xl" />
-        <div class="absolute bottom-4 left-4 text-white bg-black/50 p-4 rounded-xl">
-          <h2 class="text-xl font-bold">FNAF Into the Pit em breve!</h2>
-        </div>
-      </div>
-      
-      <!-- Slide 4 -->
-      <div class="min-w-full relative">
-        <img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000006442/691ba3e0801180a9864cc8a7694b6f98097f9d9799bc7e3dc6db92f086759252" alt="Five Nights" class="w-full h-64 object-cover rounded-xl" />
-        <div class="absolute bottom-4 left-4 text-white bg-black/50 p-4 rounded-xl">
-          <h2 class="text-xl font-bold">Celeste em breve!</h2>
-        </div>
-      </div>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+<style>
+
+  body {
+
+    font-family: 'Inter', sans-serif;
+
+  }
+
+</style>
+
+  </head>  <body class="bg-gray-100 text-gray-800"><!-- Header -->
+
+<header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg p-5 flex justify-between items-center">
+
+  <h1 class="text-3xl font-extrabold tracking-wide">
+
+    <a href="#">JT Games Store</a>
+
+  </h1>
+
+  <input
+
+    type="text"
+
+    placeholder="Buscar apps..."
+
+    class="p-2 rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-white text-gray-800"
+
+  />
+
+</header>
+
+
+
+<!-- Carrossel de Destaques estilo Play Store -->
+
+<section class="relative w-full mt-6 px-4">  <div class="overflow-hidden rounded-xl shadow-lg"><div id="carousel" class="flex transition-transform duration-700 ease-in-out" style="transform: translateX(0%)">
+
+  <!-- Slide 1 -->
+
+  <div class="min-w-full relative">
+
+    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1117850/capsule_616x353.jpg?t=1709232767" alt="Cuphead Promo" class="w-full h-64 object-cover rounded-xl" />
+
+    <div class="absolute bottom-4 left-4 text-white bg-black/50 p-4 rounded-xl">
+
+      <h2 class="text-xl font-bold">Cuphead: Versão Completa</h2>
+
+     <a href="https://shrinkme.ink/BWb8L42F" class="mt-2 inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg">Ver Detalhes</a>
+
     </div>
+
   </div>
 
-  <!-- Indicadores -->
-  <div class="flex justify-center mt-3 space-x-2">
-    <button onclick="goToSlide(0)" class="w-3 h-3 rounded-full bg-gray-400 hover:bg-gray-600" id="dot0"></button>
-    <button onclick="goToSlide(1)" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-600" id="dot1"></button>
-    <button onclick="goToSlide(2)" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-600" id="dot2"></button>
-    <button onclick="goToSlide(2)" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-600" id="dot3"></button>
+
+
+  <!-- Slide 2 -->
+
+  <div class="min-w-full relative">
+
+    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/367520/capsule_616x353.jpg?t=1712589799" alt="Hollow Knight" class="w-full h-64 object-cover rounded-xl" />
+
+    <div class="absolute bottom-4 left-4 text-white bg-black/50 p-4 rounded-xl">
+
+      <h2 class="text-xl font-bold"> Hollow Knight disponível em breve!</h2>
+
+    </div>
+
   </div>
+
+
+
+  <!-- Slide 3 -->
+
+  <div class="min-w-full relative">
+
+    <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg?t=1746172589" alt="Five Nights" class="w-full h-64 object-cover rounded-xl" />
+
+    <div class="absolute bottom-4 left-4 text-white bg-black/50 p-4 rounded-xl">
+
+      <h2 class="text-xl font-bold">FNAF Into the Pit em breve!</h2>
+
+    </div>
+
+  </div>
+
+  
+
+  <!-- Slide 4 -->
+
+  <div class="min-w-full relative">
+
+    <img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000006442/691ba3e0801180a9864cc8a7694b6f98097f9d9799bc7e3dc6db92f086759252" alt="Five Nights" class="w-full h-64 object-cover rounded-xl" />
+
+    <div class="absolute bottom-4 left-4 text-white bg-black/50 p-4 rounded-xl">
+
+      <h2 class="text-xl font-bold">Celeste em breve!</h2>
+
+    </div>
+
+  </div>
+
+</div>
+
+  </div>  <!-- Indicadores -->  <div class="flex justify-center mt-3 space-x-2"><button onclick="goToSlide(0)" class="w-3 h-3 rounded-full bg-gray-400 hover:bg-gray-600" id="dot0"></button>
+
+<button onclick="goToSlide(1)" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-600" id="dot1"></button>
+
+<button onclick="goToSlide(2)" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-600" id="dot2"></button>
+
+<button onclick="goToSlide(2)" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-600" id="dot3"></button>
+
+  </div></section><!-- Botões -->
+
+  <div class="absolute top-1/2 left-4 transform -translate-y-1/2">
+
+    <button onclick="prevSlide()" class="bg-white text-gray-700 p-2 rounded-full shadow hover:bg-gray-200">◀</button>
+
+  </div>
+
+  <div class="absolute top-1/2 right-4 transform -translate-y-1/2">
+
+    <button onclick="nextSlide()" class="bg-white text-gray-700 p-2 rounded-full shadow hover:bg-gray-200">▶</button>
+
+  </div>
+
 </section>
 
 
-      <!-- Botões -->
-      <div class="absolute top-1/2 left-4 transform -translate-y-1/2">
-        <button onclick="prevSlide()" class="bg-white text-gray-700 p-2 rounded-full shadow hover:bg-gray-200">◀</button>
-      </div>
-      <div class="absolute top-1/2 right-4 transform -translate-y-1/2">
-        <button onclick="nextSlide()" class="bg-white text-gray-700 p-2 rounded-full shadow hover:bg-gray-200">▶</button>
-      </div>
-    </section>
 
-    <!-- Seção de Apps -->
-    <main class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- App 1 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDYVrtJU9Sto-xkAXZNoYfbVactu-RBfOccKBfp_w6XLJ9lBKohUwZlxw&s=10"
-             alt="Cuphead" class="h-48 w-full object-cover" />
-        <div class="p-4">
-          <h3 class="font-bold text-lg">Cuphead By JT GAMES</h3>
-          <p class="text-sm text-gray-600 mt-1">Cuphead by JT Games traz a versão completa com a DLC The Delicious Last Course inclusa!</p>
-         <a href="Cuphead.html" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+<!-- Seção de Apps -->
+
+<main class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+  <!-- App 1 -->
+
+  <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDYVrtJU9Sto-xkAXZNoYfbVactu-RBfOccKBfp_w6XLJ9lBKohUwZlxw&s=10"
+
+         alt="Cuphead" class="h-48 w-full object-cover" />
+
+    <div class="p-4">
+
+      <h3 class="font-bold text-lg">Cuphead By JT GAMES</h3>
+
+      <p class="text-sm text-gray-600 mt-1">Cuphead by JT Games traz a versão completa com a DLC The Delicious Last Course inclusa!</p>
+
+     <a href="https://shrinkme.ink/BWb8L42F" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+
   Pré-Registro
+
 </a>
-        </div>
-      </div>
 
-      <!-- App 2 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-        <img src="https://images.squarespace-cdn.com/content/v1/606d159a953867291018f801/1619987722169-VV6ZASHHZNRBJW9X0PLK/Key_Art_02_layeredjpg.jpg?format=1500w" alt="Hollow Knight" class="h-48 w-full object-cover" />
-        <div class="p-4">
-          <h3 class="font-bold text-lg">Hollow Knight By JT GAMES</h3>
-          <p class="text-sm text-gray-600 mt-1">Um jogo indie de gênero metroidvania desenvolvido e publicado pela Team Cherry</p>
-        </div>
-      </div>
+  </div></div></div>
 
-      <!-- App 3 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-        <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg?t=1746172589" alt="FNAF Into the Pit" class="h-48 w-full object-cover" />
-        <div class="p-4">
-          <h3 class="font-bold text-lg">Five Nights at Freddy's: Into the Pit By JT GAMES</h3>
-          <p class="text-sm text-gray-600 mt-1">Five Nights at Freddy's: Into the Pit é um jogo de terror e ação-aventura em 2D, inspirado na narrativa homônima "Into the Pit"</p>
-        </div>
-      </div>
+  </div>
 
-      <!-- App 4 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-        <img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000006442/691ba3e0801180a9864cc8a7694b6f98097f9d9799bc7e3dc6db92f086759252" alt="Celeste" class="h-48 w-full object-cover" />
-        <div class="p-4">
-          <h3 class="font-bold text-lg">Celeste By JT GAMES</h3>
-          <p class="text-sm text-gray-600 mt-1">Celeste é um jogo eletrônico de plataforma desenvolvido pelos canadenses Maddy Thorson e Noel Berry, com arte feita pelo estúdio brasileiro MiniBoss"</p>
-        </div>
-      </div>
-    </main>
 
-    <!-- Rodapé -->
-    <footer class="text-center p-6 mt-10 text-gray-500 text-sm">
-      &copy; 2025 JT Games Store. Todos os direitos reservados.
-    </footer>
 
-    <!-- Script do Carrossel -->
+  <!-- App 2 -->
+
+  <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+
+    <img src="https://images.squarespace-cdn.com/content/v1/606d159a953867291018f801/1619987722169-VV6ZASHHZNRBJW9X0PLK/Key_Art_02_layeredjpg.jpg?format=1500w" alt="Hollow Knight" class="h-48 w-full object-cover" />
+
+    <div class="p-4">
+
+      <h3 class="font-bold text-lg">Hollow Knight By JT GAMES</h3>
+
+      <p class="text-sm text-gray-600 mt-1">Um jogo indie de gênero metroidvania desenvolvido e publicado pela Team Cherry</p>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- App 3 -->
+
+  <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+
+    <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg?t=1746172589" alt="FNAF Into the Pit" class="h-48 w-full object-cover" />
+
+    <div class="p-4">
+
+      <h3 class="font-bold text-lg">Five Nights at Freddy's: Into the Pit By JT GAMES</h3>
+
+      <p class="text-sm text-gray-600 mt-1">Five Nights at Freddy's: Into the Pit é um jogo de terror e ação-aventura em 2D, inspirado na narrativa homônima "Into the Pit"</p>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- App 4 -->
+
+  <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+
+    <img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000006442/691ba3e0801180a9864cc8a7694b6f98097f9d9799bc7e3dc6db92f086759252" alt="Celeste" class="h-48 w-full object-cover" />
+
+    <div class="p-4">
+
+      <h3 class="font-bold text-lg">Celeste By JT GAMES</h3>
+
+      <p class="text-sm text-gray-600 mt-1">Celeste é um jogo eletrônico de plataforma desenvolvido pelos canadenses Maddy Thorson e Noel Berry, com arte feita pelo estúdio brasileiro MiniBoss"</p>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+
+<!-- Rodapé -->
+
+<footer class="text-center p-6 mt-10 text-gray-500 text-sm">
+
+  &copy; 2025 JT Games Store. Todos os direitos reservados.
+
+</footer>
+
+
+
+<!-- Script do Carrossel -->
+
   <script>
+  
   const carousel = document.getElementById("carousel");
+  
   const dots = [document.getElementById("dot0"), document.getElementById("dot1"), document.getElementById("dot2")];
+  
   let currentSlide = 0;
+  
   const totalSlides = carousel.children.length;
+  
 
+  
   function updateSlide() {
+  
     carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+  
     dots.forEach((dot, index) => {
+  
       dot.classList.toggle("bg-gray-400", index === currentSlide);
+  
       dot.classList.toggle("bg-gray-300", index !== currentSlide);
+  
     });
+  
   }
+  
 
+  
   function goToSlide(index) {
+  
     currentSlide = index;
+  
     updateSlide();
+  
   }
+  
 
+  
   function nextSlide() {
+  
     currentSlide = (currentSlide + 1) % totalSlides;
+  
     updateSlide();
+  
   }
+  
 
+  
   setInterval(nextSlide, 6000);
+  
   updateSlide(); // iniciar corretamente
-</script>
-  </body>
-</html>
+  
+</script>  </body></html>
