@@ -14,15 +14,18 @@
 
     .store-header {
       background-color: #fff;
-      padding: 2px;
+      padding: 10px;
       text-align: center;
       border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
     }
 
     .store-logo {
-      width: 30px;
-      vertical-align: middle;
-      margin-right: 10px;
+      width: 35px;
+      height: 35px;
     }
 
     .app-container {
@@ -51,23 +54,31 @@
     }
 
     .developer {
-      color: #888;
+      color: #666;
       margin: 5px 0;
     }
 
     .rating {
       margin: 5px 0;
+      font-size: 14px;
     }
 
     .download-btn {
       margin-top: 10px;
-      padding: 10px 20px;
+      padding: 12px 22px;
       background-color: #007aff;
       color: white;
       border: none;
       border-radius: 10px;
       font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .download-btn:hover {
+      background-color: #005ecb;
+      transform: scale(1.05);
     }
 
     .screenshots h3,
@@ -85,6 +96,7 @@
       gap: 10px;
       margin-top: 10px;
       overflow-x: auto;
+      padding-bottom: 5px;
     }
 
     .screenshots-grid img {
@@ -92,12 +104,14 @@
       height: 135px;
       object-fit: cover;
       border-radius: 10px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
     }
 
     .description p,
     .whats-new p,
     .app-details ul {
       margin-top: 10px;
+      line-height: 1.6;
     }
 
     .app-details ul {
@@ -106,7 +120,24 @@
     }
 
     .app-details li {
-      margin-bottom: 5px;
+      margin-bottom: 6px;
+    }
+
+    #form-box {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+    }
+
+    #form-box input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
     }
 
     .store-footer {
@@ -115,12 +146,23 @@
       padding: 20px;
       color: #666;
       background-color: #f9f9f9;
+      margin-top: 30px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      .app-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .app-icon {
+        margin: 0 0 15px 0;
+      }
     }
   </style>
 </head>
 <body>
   <header class="store-header">
-    <alt="JT Games Hub" class="store-logo">
     <h1>JT Games Store</h1>
   </header>
 
@@ -131,40 +173,49 @@
         <h2>Cuphead by JT Games</h2>
         <p class="developer">JT Games</p>
         <p class="rating">
-  0,0 ★ • 
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdtayQvX41Qey_0be_TlPSXRshH21KclhkeQ&s" alt="Classificação 10+" style="vertical-align: middle; height: 18px; margin: 0 4px;">  • Ação/Plataforma
-</p>
-        <button class="download-btn">Pré-Registro</button>
+          0,0 ★ • 
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdtayQvX41Qey_0be_TlPSXRshH21KclhkeQ&s" alt="Classificação 10+" style="vertical-align: middle; height: 18px; margin: 0 4px;"> 
+          • Ação/Plataforma
+        </p>
+        <button class="download-btn" id="pre-reg-btn">Pré-Registro</button>
       </div>
     </section>
-<!-- Adicione antes de </main> -->
-<div id="form-box" style="display:none; margin-top: 20px;">
-  <h3>Cadastre-se para ser notificado</h3>
-  <form action="https://formsubmit.co/contatojtgames@gmail.com" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://jtgames-ofc.github.io/JT-Games-Store-/Cuphead.html">
 
-    <label for="nome">Nome:</label><br>
-    <input type="text" name="nome" required style="width:100%; padding:8px; margin-bottom:10px;"><br>
+    <!-- Formulário -->
+    <div id="form-box">
+      <h3>Cadastre-se para ser notificado</h3>
+      <form id="pre-registro-form" action="https://formsubmit.co/contatojtgames@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://jtgames-ofc.github.io/JT-Games-Store-/Cuphead.html">
 
-    <label for="email">Email:</label><br>
-    <input type="email" name="email" required style="width:100%; padding:8px; margin-bottom:10px;"><br>
+        <input type="text" name="nome" placeholder="Nome completo" required>
+        <input type="email" name="email" placeholder="Seu melhor email" required>
+        <button type="submit" class="download-btn">Cadastrar</button>
+      </form>
+    </div>
 
-    <button type="submit" class="download-btn">Cadastrar</button>
-  </form>
-</div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const preRegBtn = document.getElementById("pre-reg-btn");
+        const formBox = document.getElementById("form-box");
+        const form = document.getElementById("pre-registro-form");
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const btn = document.querySelector('.download-btn');
-    btn.addEventListener('click', function (e) {
-      e.preventDefault(); // evita qualquer ação padrão
-      const formBox = document.getElementById('form-box');
-      formBox.style.display = 'block';
-      btn.style.display = 'none'; // esconde o botão
-    });
-  });
-</script>
+        // Mostrar formulário ao clicar em Pré-Registro
+        preRegBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          formBox.style.display = "block";
+          preRegBtn.style.display = "none";
+        });
+
+        // Confirmar pré-registro ao enviar
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("✅ Pré-registro realizado com sucesso! Você será notificado em breve.");
+          form.submit();
+        });
+      });
+    </script>
+
     <section class="screenshots">
       <h3>Capturas de Tela</h3>
       <div class="screenshots-grid">
@@ -177,38 +228,37 @@
     <section class="description">
       <h3>Sobre este jogo</h3>
       <p>
-        Cuphead by JT Games traz a versão completa com a DLC The Delicious Last Course inclusa! Esta é uma versão não oficial. A nova personagem jogável, Srta. Cálice, e novos conteúdos estão disponíveis para uma experiência ainda mais desafiadora.
-Aviso: Versão não oficial e sem fins lucrativos.
-
+        Cuphead by JT Games traz a versão completa com a DLC <b>The Delicious Last Course</b> inclusa! 
+        Esta é uma versão não oficial, feita para fins de demonstração. 
+        A nova personagem jogável, Srta. Cálice, e novos conteúdos estão disponíveis para uma experiência ainda mais desafiadora.  
+        <br><b>Aviso:</b> versão não oficial e sem fins lucrativos.
       </p>
     </section>
 
     <section class="whats-new">
       <h3>Novidades</h3>
-     • Jogo Completo: Agora você pode aproveitar a experiência completa de Cuphead com todas as fases, chefões e mundos desbloqueados.
-     <p>• DLC The Delicious Last Course Inclusa: Explore novos conteúdos, com a personagem jogável Srta. Cálice e novos chefões desafiadores.</p>
-     <p>• Suporte a Gamepad: Controle a ação com total liberdade utilizando seu gamepad favorito, proporcionando uma jogabilidade mais fluida.</p>
-     <p>• Conquistas Inclusas: Desafie-se ainda mais com conquistas que testam suas habilidades e dedicação no jogo.
-     </p>
-</p>
+      <p>• Jogo Completo: Aproveite todas as fases, chefões e mundos desbloqueados.</p>
+      <p>• DLC The Delicious Last Course Inclusa: Explore novos conteúdos, com a personagem jogável Srta. Cálice e chefões inéditos.</p>
+      <p>• Suporte a Gamepad: Controle a ação com seu controle favorito para uma jogabilidade mais fluida.</p>
+      <p>• Conquistas Inclusas: Teste suas habilidades e dedicação com conquistas exclusivas.</p>
     </section>
 
     <section class="app-details">
       <h3>Informações</h3>
-<ul>
-  <li>• Tamanho: 4,9 GB</li>
-  <li>•Compatível com Android 9.0 ou superior</li>
-  <li>•Desenvolvedor: JT Games</li>
-  <li>•Categoria: Ação / Plataforma</li>
-  <li>•Classificação: 10+</li>
-  <li>•Idiomas: Inglês | Português Brasil</li>
-  <li>•Modos de jogo: Solo | Multiplayer (Online e Bluetooth)</li>
-  <li>•Requer conexão com internet: Apenas no modo multiplayer online</li>
-  <li>•Suporte a controles externos: Sim</li>
-  <li>•Oferece compras no app: Não</li>
-  <li>•Conquistas e troféus: Sim</li>
-  <li>•Lançamento previsto: Entre setembro e dezembro de 2025</li>
-</ul>
+      <ul>
+        <li>• Tamanho: 4,9 GB</li>
+        <li>• Compatível com Android 9.0 ou superior</li>
+        <li>• Desenvolvedor: JT Games</li>
+        <li>• Categoria: Ação / Plataforma</li>
+        <li>• Classificação: 10+</li>
+        <li>• Idiomas: Inglês | Português Brasil</li>
+        <li>• Modos de jogo: Solo | Multiplayer (Online e Bluetooth)</li>
+        <li>• Requer internet: Apenas no multiplayer online</li>
+        <li>• Suporte a controles externos: Sim</li>
+        <li>• Oferece compras no app: Não</li>
+        <li>• Conquistas e troféus: Sim</li>
+        <li>• Lançamento previsto: Entre setembro e dezembro de 2025</li>
+      </ul>
     </section>
   </main>
 
