@@ -12,6 +12,12 @@
       font-family: 'Inter', sans-serif;
       transition: background-color 0.3s, color 0.3s;
     }
+    .disabled-btn {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    
+    /* Variáveis CSS para temas */
     :root {
       --bg-primary: #f7fafc;
       --bg-secondary: #ffffff;
@@ -22,6 +28,7 @@
       --footer-bg: #1a202c;
       --footer-text: #cbd5e0;
     }
+    
     [data-theme="dark"] {
       --bg-primary: #1a202c;
       --bg-secondary: #2d3748;
@@ -32,9 +39,41 @@
       --footer-bg: #0f141c;
       --footer-text: #e2e8f0;
     }
+    
     .theme-transition {
       transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     }
+    
+    /* Estilo para o aviso com animação de desaparecimento */
+    #update-notice {
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    
+    .hidden-notice {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
+    }
+    
+    /* Estilo para os ícones das redes sociais */
+    .social-icon {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+    
+    /* Estilo para o link da loja original */
+    .original-store-link {
+      color: #60a5fa;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .original-store-link:hover {
+      color: #93c5fd;
+    }
+    
     .input-error {
       border-color: #e53e3e;
       box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.2);
@@ -72,19 +111,23 @@
   </style>
 </head>
 <body class="theme-transition" style="background-color: var(--bg-primary); color: var(--text-primary);">
-
-  <!-- Navbar -->
-  <nav class="text-white shadow-lg fixed w-full top-0 z-50 theme-transition" style="background-image: var(--nav-bg);">
+  
+  <!-- Navbar (cabeçalho idêntico ao do segundo código) -->
+  <nav class="text-white shadow-lg fixed w-full top-0 z-40 theme-transition" style="background-image: var(--nav-bg);">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-extrabold tracking-wide">
         <a href="index.html">JT Games Store</a>
       </h1>
       <ul class="hidden md:flex space-x-6 font-medium">
-        <li><a href="index.html" class="hover:text-gray-200 font-bold underline">Início</a></li>
+        <li><a href="index.html" class="hover:text-gray-200">Início</a></li>
         <li><a href="populares.html" class="hover:text-gray-200">Populares</a></li>
         <li><a href="#" class="hover:text-gray-200">Novos</a></li>
         <li><a href="categorias.html" class="hover:text-gray-200">Categorias</a></li>
       </ul>
+      <div class="flex items-center space-x-4">
+        <input type="text" placeholder="Buscar jogos..." class="hidden md:block p-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-white theme-transition" style="background-color: var(--bg-secondary); color: var(--text-primary);" />
+        <button id="login-btn-nav" class="theme-transition px-4 py-2 rounded-lg font-semibold hover:opacity-90" style="background-color: var(--bg-secondary); color: var(--text-primary);">Login</button>
+      </div>
     </div>
   </nav>
 
@@ -148,6 +191,7 @@
     const emailError = document.getElementById('emailError');
     const senhaError = document.getElementById('senhaError');
     const loginBtn = document.getElementById('login-btn');
+    const loginBtnNav = document.getElementById('login-btn-nav');
 
     // Validação de formulário
     function validateForm() {
@@ -230,6 +274,22 @@
       }
     }
 
+    // Script para verificar se o usuário está logado
+    function checkLogin() {
+      const user = localStorage.getItem('user');
+      if (user) {
+        loginBtnNav.textContent = `Olá, ${user}`;
+        loginBtnNav.onclick = () => {
+          window.location.href = 'area-membros.html'; // vai direto para a área de membros
+        }
+      } else {
+        loginBtnNav.textContent = 'Login';
+        loginBtnNav.onclick = () => {
+          window.location.href = 'login.html';
+        }
+      }
+    }
+
     loginForm.addEventListener('submit', handleLogin);
     
     // Remove error styles when user starts typing
@@ -247,6 +307,9 @@
       senhaInput.classList.remove('input-error');
       senhaError.classList.add('hidden');
     });
+
+    // Inicialização
+    checkLogin();
   </script>
 
 </body>
