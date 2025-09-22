@@ -1,49 +1,127 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <link rel="icon" href="https://yt3.googleusercontent.com/tZjRjVHxbqoDXGHVwPeQ-G4wl_gM7NSPYEZtolQ6jf51881BOzfWe1pZVct7e15q4ZHZwRpjbw=s160-c-k-c0x00ffffff-no-rj" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JT Games Store</title>
+  <link rel="icon" href="https://yt3.googleusercontent.com/tZjRjVHxbqoDXGHVwPeQ-G4wl_gM7NSPYEZtolQ6jf51881BOzfWe1pZVct7e15q4ZHZwRpjbw=s160-c-k-c0x00ffffff-no-rj" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { 
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .disabled-btn {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    /* Estilos para os botões de navegação perfeitamente redondos */
+    #prevBtn, #nextBtn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      padding: 0;
+    }
+    
+    /* Variáveis CSS para temas */
+    :root {
+      --bg-primary: #f7fafc;
+      --bg-secondary: #ffffff;
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --nav-bg: linear-gradient(to right, #2563eb, #7c3aed);
+      --card-bg: #ffffff;
+      --footer-bg: #1a202c;
+      --footer-text: #cbd5e0;
+    }
+    
+    [data-theme="dark"] {
+      --bg-primary: #1a202c;
+      --bg-secondary: #2d3748;
+      --text-primary: #e2e8f0;
+      --text-secondary: #a0aec0;
+      --nav-bg: linear-gradient(to right, #1e40af, #6d28d9);
+      --card-bg: #2d3748;
+      --footer-bg: #0f141c;
+      --footer-text: #e2e8f0;
+    }
+    
+    .theme-transition {
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+    
+    /* Estilo para o aviso com animação de desaparecimento */
+    #update-notice {
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    
+    .hidden-notice {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
+    }
+    
+    /* Estilo para os ícones das redes sociais */
+    .social-icon {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+    
+    /* Estilo para o link da loja original */
+    .original-store-link {
+      color: #60a5fa;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .original-store-link:hover {
+      color: #93c5fd;
+    }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="theme-transition" style="background-color: var(--bg-primary); color: var(--text-primary);">
 
-  <div class="bg-yellow-400 text-yellow-900 text-center py-3 fixed w-full top-0 z-50">
+  <!-- Aviso de Atualização -->
+  <div id="update-notice" class="bg-yellow-400 text-yellow-900 text-center py-3 fixed w-full top-0 z-50">
     <p class="font-semibold text-sm md:text-base">
       AVISO: Atualização da JT GAMES STORE 01/11.
     </p>
   </div>
   
-  <div class="pt-12 md:pt-14"></div>
-
-  <nav class="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg fixed w-full top-0 z-40">
+  <!-- Navbar -->
+  <nav class="text-white shadow-lg fixed w-full top-0 z-40 theme-transition" style="background-image: var(--nav-bg);">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-extrabold tracking-wide">
         <a href="#">JT Games Store</a>
       </h1>
       <ul class="hidden md:flex space-x-6 font-medium">
-        <li><a href="#" class="hover:text-gray-200">Início</a></li>
-        <li><a href="#" class="hover:text-gray-200">Populares</a></li>
+        <li><a href="#" class="hover:text-gray-200 font-bold underline">Início</a></li>
+        <li><a href="populares.html" class="hover:text-gray-200">Populares</a></li>
         <li><a href="#" class="hover:text-gray-200">Novos</a></li>
-        <li><a href="#" class="hover:text-gray-200">Categorias</a></li>
+        <li><a href="categorias.html" class="hover:text-gray-200">Categorias</a></li>
       </ul>
       <div class="flex items-center space-x-4">
-        <input type="text" placeholder="Buscar jogos..." class="hidden md:block p-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-white text-gray-800" />
-        <button class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100">Login</button>
+        <input type="text" placeholder="Buscar jogos..." class="hidden md:block p-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-white theme-transition" style="background-color: var(--bg-secondary); color: var(--text-primary);" />
+        <button id="login-btn" class="theme-transition px-4 py-2 rounded-lg font-semibold hover:opacity-90" style="background-color: var(--bg-secondary); color: var(--text-primary);">Login</button>
       </div>
     </div>
   </nav>
 
+  <!-- Espaço por causa da navbar fixa -->
   <div class="pt-24"></div>
 
+  <!-- Carrossel -->
   <section class="relative w-full px-4 max-w-6xl mx-auto">
     <div class="overflow-hidden rounded-2xl shadow-xl">
       <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
+        
+        <!-- Slide 1 -->
         <div class="min-w-full relative">
           <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1117850/capsule_616x353.jpg" alt="Cuphead" class="w-full h-80 object-cover" />
           <div class="absolute bottom-6 left-6 text-white bg-black/60 backdrop-blur-md p-6 rounded-lg">
@@ -52,6 +130,7 @@
           </div>
         </div>
 
+        <!-- Slide 2 -->
         <div class="min-w-full relative">
           <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/367520/capsule_616x353.jpg" alt="Hollow Knight" class="w-full h-80 object-cover" />
           <div class="absolute bottom-6 left-6 text-white bg-black/60 backdrop-blur-md p-6 rounded-lg">
@@ -59,6 +138,7 @@
           </div>
         </div>
 
+        <!-- Slide 3 -->
         <div class="min-w-full relative">
           <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg" alt="FNAF" class="w-full h-80 object-cover" />
           <div class="absolute bottom-6 left-6 text-white bg-black/60 backdrop-blur-md p-6 rounded-lg">
@@ -66,118 +146,253 @@
           </div>
         </div>
 
+        <!-- Slide 4 -->
         <div class="min-w-full relative">
-          <img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000006442/691ba3e0801180a9864cc8a7694b6f98097f9d9799bc7e3dc6db92f086759252" alt="Celeste" class="w-full h-80 object-cover" />
+          <img src="https://i.postimg.cc/9Fzn3476/celeste.avif" alt="Celeste" class="w-full h-80 object-cover" />
           <div class="absolute bottom-6 left-6 text-white bg-black/60 backdrop-blur-md p-6 rounded-lg">
             <h2 class="text-2xl font-bold">Celeste em breve!</h2>
           </div>
         </div>
+
       </div>
     </div>
-    <div class="flex justify-center mt-3 space-x-2">
-      <button onclick="goToSlide(0)" class="dot w-3 h-3 rounded-full bg-gray-400"></button>
-      <button onclick="goToSlide(1)" class="dot w-3 h-3 rounded-full bg-gray-300"></button>
-      <button onclick="goToSlide(2)" class="dot w-3 h-3 rounded-full bg-gray-300"></button>
-      <button onclick="goToSlide(3)" class="dot w-3 h-3 rounded-full bg-gray-300"></button>
-    </div>
-    <div class="absolute top-1/2 left-4 transform -translate-y-1/2">
-      <button onclick="prevSlide()" class="bg-white/90 text-gray-700 p-2 rounded-full shadow hover:bg-gray-200">◀</button>
-    </div>
-    <div class="absolute top-1/2 right-4 transform -translate-y-1/2">
-      <button onclick="nextSlide()" class="bg-white/90 text-gray-700 p-2 rounded-full shadow hover:bg-gray-200">▶</button>
+
+    <!-- Controles (bolinhas + botões) -->
+    <div class="flex justify-center items-center mt-4 space-x-4">
+      <button id="prevBtn" onclick="prevSlide()" class="text-white p-2 rounded-full shadow hover:opacity-90 transition theme-transition" style="background-image: var(--nav-bg);">◀</button>
+
+      <div class="flex space-x-2">
+        <button onclick="goToSlide(0)" class="dot w-3 h-3 rounded-full theme-transition" style="background-color: var(--text-secondary);"></button>
+        <button onclick="goToSlide(1)" class="dot w-3 h-3 rounded-full theme-transition" style="background-color: var(--text-secondary);"></button>
+        <button onclick="goToSlide(2)" class="dot w-3 h-3 rounded-full theme-transition" style="background-color: var(--text-secondary);"></button>
+        <button onclick="goToSlide(3)" class="dot w-3 h-3 rounded-full theme-transition" style="background-color: var(--text-secondary);"></button>
+      </div>
+
+      <button id="nextBtn" onclick="nextSlide()" class="text-white p-2 rounded-full shadow hover:opacity-90 transition theme-transition" style="background-image: var(--nav-bg);">▶</button>
     </div>
   </section>
+
+  <!-- Seção de Jogos -->
   <main class="max-w-7xl mx-auto px-6 mt-12">
-    <h2 class="text-2xl font-bold mb-6">Jogos Populares</h2>
+    <h2 class="text-2xl font-bold mb-6">Nossos Jogos</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden">
+
+      <!-- Card 1 - Cuphead -->
+      <div class="rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden theme-transition" style="background-color: var(--card-bg);">
         <div class="relative">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDYVrtJU9Sto-xkAXZNoYfbVactu-RBfOccKBfp_w6XLJ9lBKohUwZlxw&s=10" alt="Cuphead" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
           <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-lg">🔥 Popular</span>
         </div>
         <div class="p-4">
           <h3 class="font-bold text-lg">Cuphead By JT GAMES</h3>
-          <p class="text-sm text-gray-600 mt-1">Versão completa com a DLC inclusa!</p>
-          <a href="Cuphead.html" class="mt-4 inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:opacity-90 transition">Pré-Registro</a>
+          <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Versão completa com a DLC inclusa!</p>
+          <a href="Cuphead.html" class="mt-4 inline-block text-white px-4 py-2 rounded-lg hover:opacity-90 transition theme-transition" style="background-image: var(--nav-bg);">Pré-Registro</a>
         </div>
       </div>
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden">
+
+      <!-- Card 2 -->
+      <div class="rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden theme-transition" style="background-color: var(--card-bg);">
         <img src="https://images.squarespace-cdn.com/content/v1/606d159a953867291018f801/1619987722169-VV6ZASHHZNRBJW9X0PLK/Key_Art_02_layeredjpg.jpg?format=1500w" alt="Hollow Knight" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
         <div class="p-4">
           <h3 class="font-bold text-lg">Hollow Knight By JT GAMES</h3>
-          <p class="text-sm text-gray-600 mt-1">Um indie metroidvania da Team Cherry.</p>
+          <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Um indie metroidvania da Team Cherry.</p>
         </div>
       </div>
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden">
+
+      <!-- Card 3 -->
+      <div class="rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden theme-transition" style="background-color: var(--card-bg);">
         <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg" alt="FNAF Into the Pit" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
         <div class="p-4">
-          <h3 class="font-bold text-lg">Five Nights: Into the Pit</h3>
-          <p class="text-sm text-gray-600 mt-1">Terror 2D inspirado na história "Into the Pit".</p>
+          <h3 class="font-bold text-lg">FNaF: Into the Pit</h3>
+          <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Terror 2D inspirado na história "Into the Pit".</p>
         </div>
       </div>
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden">
-        <img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000006442/691ba3e0801180a9864cc8a7694b6f98097f9d9799bc7e3dc6db92f086759252" alt="Celeste" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
+
+      <!-- Card 4 -->
+      <div class="rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden theme-transition" style="background-color: var(--card-bg);">
+        <img src="https://i.postimg.cc/9Fzn3476/celeste.avif" alt="Celeste" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
         <div class="p-4">
           <h3 class="font-bold text-lg">Celeste By JT GAMES</h3>
-          <p class="text-sm text-gray-600 mt-1">Um desafiador jogo de plataforma desenvolvido pelo estúdio MiniBoss.</p>
+          <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Um desafiador jogo de plataforma desenvolvido pelo estúdio MiniBoss.</p>
         </div>
       </div>
+
     </div>
   </main>
-  <footer class="bg-gray-900 text-gray-300 mt-16 py-10">
+
+  <!-- Rodapé -->
+  <footer class="mt-16 py-10 theme-transition" style="background-color: var(--footer-bg); color: var(--footer-text);">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
       <div>
         <h3 class="font-bold text-lg">JT Games Store</h3>
-        <p class="text-sm mt-2">Sua loja digital de jogos favorita.</p>
+        <p class="text-sm mt-2">Sua loja digital de jogos favorita. Essa é apenas uma reformulação visual, a <span class="original-store-link" onclick="window.open('https://jtgames-ofc.github.io/JT-Games-Store-', '_blank')">loja original</span> pertence a JT Games.</p>
       </div>
       <div>
         <h3 class="font-bold text-lg">Links</h3>
         <ul class="mt-2 space-y-1 text-sm">
-          <li><a href="#" class="hover:text-white">Início</a></li>
-          <li><a href="#" class="hover:text-white">Categorias</a></li>
+           <li><a href="#" class="hover:text-white">Início</a></li>
+           <li><a href="populares.html" class="hover:text-white">Populares</a></li>
+           <li><a href="categorias.html" class="hover:text-white">Categorias</a></li>
           <li><a href="#" class="hover:text-white">Contato</a></li>
         </ul>
-      </div>
+        </div>
+
       <div>
         <h3 class="font-bold text-lg">Redes Sociais</h3>
         <div class="flex space-x-3 mt-2">
-          <a href="https://www.youtube.com/@JTGAMES-STUDIOS" class="hover:text-white">📘 Youtube</a>
-          <a href="https://www.instagram.com/jtgamesstudios/?igsh=OWxxeXh0dWhzazJp#" class="hover:text-white">📷 Instagram</a>
+          <a href="https://www.youtube.com/@JTGAMES-STUDIOS" class="hover:text-white">
+            <img src="https://imghost.com.br/ib/ZHNOtIZpYvZ9aMl_1758561860.png" alt="YouTube" class="social-icon" />
+            YouTube
+          </a>
+          <a href="https://www.instagram.com/jtgamesstudios/?igsh=OWxxeXh0dWhzazJp#" class="hover:text-white">
+            <img src="https://imghost.com.br/ib/Y5CNs7HpBaAOXXx_1758561511.png" alt="Instagram" class="social-icon" />
+            Instagram
+          </a>
         </div>
       </div>
     </div>
-    <div class="text-center text-xs mt-6 text-gray-500">© 2025 JT Games Store. Todos os direitos reservados.</div>
+    <div class="text-center text-xs mt-6 theme-transition" style="color: var(--footer-text); opacity: 0.7;">&copy; 2025 JT Games Store. Todos os direitos reservados.</div>
   </footer>
+
+  <!-- Script do Carrossel e Detecção de Tema -->
   <script>
+    // Função para esconder o aviso após 3 segundos
+    function hideUpdateNotice() {
+      const notice = document.getElementById('update-notice');
+      setTimeout(() => {
+        notice.classList.add('hidden-notice');
+      }, 3000);
+    }
+
     const carousel = document.getElementById("carousel");
     const dots = document.querySelectorAll(".dot");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
     let currentSlide = 0;
     const totalSlides = carousel.children.length;
+    let slideInterval;
+    let manualTimeout;
 
     function updateSlide() {
       carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
       dots.forEach((dot, index) => {
-        dot.classList.toggle("bg-gray-400", index === currentSlide);
-        dot.classList.toggle("bg-gray-300", index !== currentSlide);
+        if (index === currentSlide) {
+          dot.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
+        } else {
+          dot.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
+        }
       });
+
+      // em vez de sumir, apenas desativa
+      prevBtn.classList.toggle("disabled-btn", currentSlide === 0);
+      nextBtn.classList.toggle("disabled-btn", currentSlide === totalSlides - 1);
     }
 
     function goToSlide(i) {
       currentSlide = i;
       updateSlide();
+      resetInterval(true);
     }
 
     function nextSlide() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      updateSlide();
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlide();
+        resetInterval(true);
+      }
     }
 
     function prevSlide() {
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      updateSlide();
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlide();
+        resetInterval(true);
+      }
     }
-    setInterval(nextSlide, 5000);
+
+    function resetInterval(manual = false) {
+      clearInterval(slideInterval);
+      clearTimeout(manualTimeout);
+
+      if (manual) {
+        manualTimeout = setTimeout(() => {
+          startAuto();
+        }, 3000);
+      } else {
+        startAuto();
+      }
+    }
+
+    function startAuto() {
+      slideInterval = setInterval(() => {
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+        } else {
+          currentSlide = 0;
+        }
+        updateSlide();
+      }, 5000);
+    }
+
+    let startX = 0;
+    carousel.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    });
+    carousel.addEventListener("touchend", (e) => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) {
+        nextSlide();
+      } else if (endX - startX > 50) {
+        prevSlide();
+      }
+    });
+
+    // Sistema de tema automático baseado nas preferências do sistema
+    function detectColorScheme() {
+      let theme = "light";
+      
+      // Verifica a preferência do sistema
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = "dark";
+      }
+      
+      // Aplica o tema
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+    
+    // Observa mudanças na preferência do sistema
+    const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    colorSchemeQuery.addEventListener('change', (e) => {
+      if (e.matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    });
+    
+    // Script para verificar se o usuário está logado
+    function checkLogin() {
+      const user = localStorage.getItem('user');
+      if (user) {
+        document.getElementById('login-btn').textContent = `Olá, ${user}`;
+        document.getElementById('login-btn').onclick = () => {
+          window.location.href = 'area-membros.html'; // vai direto para a área de membros
+        }
+      } else {
+        document.getElementById('login-btn').textContent = 'Login';
+        document.getElementById('login-btn').onclick = () => {
+          window.location.href = 'login.html';
+        }
+      }
+    }
+
+    // Inicialização
+    detectColorScheme();
+    resetInterval();
     updateSlide();
+    checkLogin();
+    hideUpdateNotice(); // Inicia o temporizador para esconder o aviso
   </script>
+
 </body>
 </html>
