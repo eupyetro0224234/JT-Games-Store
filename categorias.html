@@ -48,6 +48,16 @@
       vertical-align: middle;
       margin-right: 5px;
     }
+    
+    /* Estilo para o link da loja original */
+    .original-store-link {
+      color: #60a5fa;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .original-store-link:hover {
+      color: #93c5fd;
+    }
   </style>
 </head>
 <body class="theme-transition" style="background-color: var(--bg-primary); color: var(--text-primary);">
@@ -153,7 +163,7 @@
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
       <div>
         <h3 class="font-bold text-lg">JT Games Store</h3>
-        <p class="text-sm mt-2">Sua loja digital de jogos favorita. Essa é apenas uma reformulação visual, a loja original pertence a JT Games.</p>
+        <p class="text-sm mt-2">Sua loja digital de jogos favorita. Essa é apenas uma reformulação visual, a <span class="original-store-link" onclick="window.open('https://jtgames-ofc.github.io/JT-Games-Store-', '_blank')">loja original</span> pertence a JT Games.</p>
       </div>
       <div>
         <h3 class="font-bold text-lg">Links</h3>
