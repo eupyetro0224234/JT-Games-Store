@@ -108,6 +108,32 @@
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+    
+    /* Estilo para mensagens de status */
+    .status-message {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      text-align: center;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .status-error {
+      background-color: #fed7d7;
+      color: #c53030;
+      border: 1px solid #feb2b2;
+    }
+    
+    .status-success {
+      background-color: #c6f6d5;
+      color: #276749;
+      border: 1px solid #9ae6b4;
+    }
+    
+    .status-hidden {
+      display: none;
+    }
   </style>
 </head>
 <body class="theme-transition" style="background-color: var(--bg-primary); color: var(--text-primary);">
@@ -138,6 +164,9 @@
   <section class="flex justify-center items-center min-h-[70vh] px-4">
     <div class="w-full max-w-md p-8 rounded-2xl shadow-xl theme-transition" style="background-color: var(--card-bg);">
       <h2 class="text-2xl font-bold mb-6 text-center">Login / Registro</h2>
+      
+      <!-- Área para mensagens de status -->
+      <div id="status-message" class="status-message status-hidden"></div>
       
       <form id="login-form">
         <div class="mb-4">
@@ -192,6 +221,30 @@
     const senhaError = document.getElementById('senhaError');
     const loginBtn = document.getElementById('login-btn');
     const loginBtnNav = document.getElementById('login-btn-nav');
+    const statusMessage = document.getElementById('status-message');
+
+    // Função para mostrar mensagens de status
+    function showStatusMessage(message, type) {
+      statusMessage.textContent = message;
+      statusMessage.className = 'status-message';
+      
+      if (type === 'error') {
+        statusMessage.classList.add('status-error');
+      } else if (type === 'success') {
+        statusMessage.classList.add('status-success');
+      }
+      
+      statusMessage.classList.remove('status-hidden');
+      
+      // Auto-esconder após 5 segundos
+      setTimeout(() => {
+        hideStatusMessage();
+      }, 5000);
+    }
+    
+    function hideStatusMessage() {
+      statusMessage.classList.add('status-hidden');
+    }
 
     // Validação de formulário
     function validateForm() {
@@ -241,7 +294,7 @@
 
       // Validação mínima de email e senha
       if (!email || senha.length < 6) {
-        alert('❌ Preencha corretamente o email e a senha (mínimo 6 caracteres).');
+        showStatusMessage('❌ Preencha corretamente o email e a senha (mínimo 6 caracteres).', 'error');
         return;
       }
 
@@ -263,11 +316,10 @@
           localStorage.setItem('userEmail', email);
           window.location.href = 'area-membros.html';
         } else {
-          alert('❌ ' + result.mensagem);
+          showStatusMessage('❌ ' + result.mensagem, 'error');
         }
       } catch(err) {
-        console.error(err);
-        alert('❌ Não foi possível conectar ao servidor.');
+        showStatusMessage('❌ Não foi possível conectar ao servidor.', 'error');
       } finally {
         loginForm.classList.remove('loading');
         loginBtn.classList.remove('btn-loading');
@@ -296,16 +348,19 @@
     nomeInput.addEventListener('input', () => {
       nomeInput.classList.remove('input-error');
       nomeError.classList.add('hidden');
+      hideStatusMessage();
     });
     
     emailInput.addEventListener('input', () => {
       emailInput.classList.remove('input-error');
       emailError.classList.add('hidden');
+      hideStatusMessage();
     });
     
     senhaInput.addEventListener('input', () => {
       senhaInput.classList.remove('input-error');
       senhaError.classList.add('hidden');
+      hideStatusMessage();
     });
 
     // Inicialização
