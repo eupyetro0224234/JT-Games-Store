@@ -197,6 +197,24 @@
 
   <!-- Script de Login e Tema -->
   <script>
+    // Verificar se o usuário já está logado e redirecionar
+    function checkIfLoggedIn() {
+      const user = localStorage.getItem('user');
+      if (user) {
+        // Usuário já está logado, redirecionar para a página principal
+        window.location.href = 'https://eupyetro0224234.github.io/JT-Games-Store';
+        return true;
+      }
+      return false;
+    }
+
+    // Executar a verificação imediatamente ao carregar a página
+    if (checkIfLoggedIn()) {
+      // Se estiver logado, o redirecionamento já foi feito
+      // Podemos parar a execução do resto do script
+      // Mas o navegador vai continuar processando até o redirecionamento acontecer
+    }
+
     // Tema automático
     function detectColorScheme() {
       let theme = "light";
@@ -326,7 +344,7 @@
       }
     }
 
-    // Script para verificar se o usuário está logado
+    // Script para verificar se o usuário está logado e atualizar o botão de login
     function checkLogin() {
       const user = localStorage.getItem('user');
       if (user) {
