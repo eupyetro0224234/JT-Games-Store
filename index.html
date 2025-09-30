@@ -83,6 +83,15 @@
     .original-store-link:hover {
       color: #93c5fd;
     }
+    
+    /* Estilo para imagens em carregamento */
+    .loading-img {
+      background-color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4a5568;
+    }
   </style>
 </head>
 <body class="theme-transition" style="background-color: var(--bg-primary); color: var(--text-primary);">
@@ -123,7 +132,7 @@
         
         <!-- Slide 1 -->
         <div class="min-w-full relative">
-          <img src="https://imghost.com.br/ib/Cacu0w9zCWO2xI6_1759191343.jpg" alt="Cuphead" class="w-full h-80 object-cover" />
+          <img id="carousel-img-0" src="" alt="Cuphead" class="w-full h-80 object-cover loading-img" data-src="https://imghost.com.br/ib/Cacu0w9zCWO2xI6_1759191343.jpg" />
           <div class="absolute bottom-6 left-6 text-white bg-black/60 backdrop-blur-md p-6 rounded-lg">
             <h2 class="text-2xl font-bold">Cuphead: Versão Completa</h2>
             <a href="Cuphead.html" class="mt-3 inline-block bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold">Ver Detalhes</a>
@@ -132,7 +141,7 @@
 
         <!-- Slide 2 -->
         <div class="min-w-full relative">
-          <img src="https://imghost.com.br/ib/9rdrwk3oq04CsuS_1759191293.jpg" alt="Hollow Knight" class="w-full h-80 object-cover" />
+          <img id="carousel-img-1" src="" alt="Hollow Knight" class="w-full h-80 object-cover loading-img" data-src="https://imghost.com.br/ib/9rdrwk3oq04CsuS_1759191293.jpg" />
           <div class="absolute bottom-6 left-6 text-white bg-black/60 backdrop-blur-md p-6 rounded-lg">
             <h2 class="text-2xl font-bold">Hollow Knight em breve!</h2>
           </div>
@@ -140,7 +149,7 @@
 
         <!-- Slide 3 -->
         <div class="min-w-full relative">
-          <img src="https://imghost.com.br/ib/LyKcDEao13BH4xT_1759191168.jpg" alt="FNAF" class="w-full h-80 object-cover" />
+          <img id="carousel-img-2" src="" alt="FNAF" class="w-full h-80 object-cover loading-img" data-src="https://imghost.com.br/ib/LyKcDEao13BH4xT_1759191168.jpg" />
           <div class="absolute bottom-6 left-6 text-white bg-black/60 backdrop-blur-md p-6 rounded-lg">
             <h2 class="text-2xl font-bold">FNAF Into the Pit em breve!</h2>
           </div>
@@ -148,7 +157,7 @@
 
         <!-- Slide 4 -->
         <div class="min-w-full relative">
-          <img src="" alt="Celeste" class="w-full h-80 object-cover" />
+          <img id="carousel-img-3" src="" alt="Celeste" class="w-full h-80 object-cover loading-img" data-src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000006442/691ba3e0801180a9864cc8a7694b6f98097f9d9799bc7e3dc6db92f086759252" />
           <div class="absolute bottom-6 left-6 text-white bg-black/60 backdrop-blur-md p-6 rounded-lg">
             <h2 class="text-2xl font-bold">Celeste em breve!</h2>
           </div>
@@ -180,7 +189,7 @@
       <!-- Card 1 - Cuphead -->
       <div class="rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden theme-transition" style="background-color: var(--card-bg);">
         <div class="relative">
-          <img src="https://imghost.com.br/ib/qyKdY6EMYbiuv2B_1759191575.jpg" alt="Cuphead" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
+          <img id="card-img-0" src="" alt="Cuphead" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300 loading-img" data-src="https://imghost.com.br/ib/qyKdY6EMYbiuv2B_1759191575.jpg" />
           <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-lg">🔥 Popular</span>
         </div>
         <div class="p-4">
@@ -192,7 +201,7 @@
 
       <!-- Card 2 -->
       <div class="rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden theme-transition" style="background-color: var(--card-bg);">
-        <img src="https://imghost.com.br/ib/sUPUYA1CiLbqG5S_1759191870.jpg" alt="Hollow Knight" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
+        <img id="card-img-1" src="" alt="Hollow Knight" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300 loading-img" data-src="https://imghost.com.br/ib/sUPUYA1CiLbqG5S_1759191870.jpg" />
         <div class="p-4">
           <h3 class="font-bold text-lg">Hollow Knight By JT GAMES</h3>
           <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Um indie metroidvania da Team Cherry.</p>
@@ -201,7 +210,7 @@
 
       <!-- Card 3 -->
       <div class="rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden theme-transition" style="background-color: var(--card-bg);">
-        <img src="https://imghost.com.br/ib/ycDjWsftgZn68LC_1759191921.jpg" alt="FNAF Into the Pit" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
+        <img id="card-img-2" src="" alt="FNAF Into the Pit" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300 loading-img" data-src="https://imghost.com.br/ib/ycDjWsftgZn68LC_1759191921.jpg" />
         <div class="p-4">
           <h3 class="font-bold text-lg">FNaF: Into the Pit</h3>
           <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Terror 2D inspirado na história "Into the Pit".</p>
@@ -210,7 +219,7 @@
 
       <!-- Card 4 -->
       <div class="rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden theme-transition" style="background-color: var(--card-bg);">
-        <img src="https://imghost.com.br/ib/RpZHqpxLboKLJqc_1759192074.jpg" alt="Celeste" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
+        <img id="card-img-3" src="" alt="Celeste" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300 loading-img" data-src="https://imghost.com.br/ib/RpZHqpxLboKLJqc_1759192074.jpg" />
         <div class="p-4">
           <h3 class="font-bold text-lg">Celeste By JT GAMES</h3>
           <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Um desafiador jogo de plataforma desenvolvido pelo estúdio MiniBoss.</p>
@@ -256,6 +265,161 @@
 
   <!-- Script do Carrossel e Detecção de Tema -->
   <script>
+    // Sistema de cache de imagens
+    class ImageCache {
+      constructor() {
+        this.cacheName = 'jtgames-images';
+        this.expiryDays = 7; // As imagens expiram após 7 dias
+      }
+      
+      // Salva uma imagem no localStorage
+      async saveImage(url) {
+        try {
+          // Verifica se o navegador suporta localStorage
+          if (!this.supportsLocalStorage()) return null;
+          
+          // Verifica se a imagem já está em cache
+          const cached = this.getImage(url);
+          if (cached) return cached;
+          
+          // Faz o download da imagem
+          const response = await fetch(url);
+          const blob = await response.blob();
+          
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+              const imageData = {
+                data: reader.result,
+                timestamp: Date.now(),
+                url: url
+              };
+              
+              // Salva no localStorage
+              const cache = this.getCache();
+              cache[url] = imageData;
+              this.setCache(cache);
+              
+              resolve(imageData.data);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          });
+        } catch (error) {
+          console.error('Erro ao salvar imagem no cache:', error);
+          return null;
+        }
+      }
+      
+      // Recupera uma imagem do cache
+      getImage(url) {
+        if (!this.supportsLocalStorage()) return null;
+        
+        const cache = this.getCache();
+        const cached = cache[url];
+        
+        if (cached) {
+          // Verifica se a imagem expirou
+          const expiryTime = this.expiryDays * 24 * 60 * 60 * 1000; // Dias em milissegundos
+          if (Date.now() - cached.timestamp > expiryTime) {
+            // Remove a imagem expirada
+            delete cache[url];
+            this.setCache(cache);
+            return null;
+          }
+          
+          return cached.data;
+        }
+        
+        return null;
+      }
+      
+      // Obtém todo o cache
+      getCache() {
+        try {
+          const cache = localStorage.getItem(this.cacheName);
+          return cache ? JSON.parse(cache) : {};
+        } catch (error) {
+          console.error('Erro ao acessar cache:', error);
+          return {};
+        }
+      }
+      
+      // Define o cache
+      setCache(cache) {
+        try {
+          localStorage.setItem(this.cacheName, JSON.stringify(cache));
+        } catch (error) {
+          console.error('Erro ao salvar cache:', error);
+          // Se o localStorage estiver cheio, limpa as imagens mais antigas
+          this.clearOldImages();
+        }
+      }
+      
+      // Limpa imagens antigas para liberar espaço
+      clearOldImages() {
+        const cache = this.getCache();
+        const urls = Object.keys(cache);
+        
+        if (urls.length > 20) { // Mantém apenas as 20 imagens mais recentes
+          // Ordena por timestamp (mais antigas primeiro)
+          urls.sort((a, b) => cache[a].timestamp - cache[b].timestamp);
+          
+          // Remove as mais antigas
+          const toRemove = urls.slice(0, urls.length - 20);
+          toRemove.forEach(url => delete cache[url]);
+          
+          this.setCache(cache);
+        }
+      }
+      
+      // Verifica se o navegador suporta localStorage
+      supportsLocalStorage() {
+        try {
+          const test = 'test';
+          localStorage.setItem(test, test);
+          localStorage.removeItem(test);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+    }
+    
+    // Inicializa o cache de imagens
+    const imageCache = new ImageCache();
+    
+    // Carrega uma imagem com cache
+    async function loadImageWithCache(imgElement) {
+      const url = imgElement.getAttribute('data-src');
+      if (!url) return;
+      
+      // Tenta obter do cache primeiro
+      const cachedImage = imageCache.getImage(url);
+      
+      if (cachedImage) {
+        // Usa a imagem do cache
+        imgElement.src = cachedImage;
+        imgElement.classList.remove('loading-img');
+      } else {
+        // Carrega a imagem e salva no cache
+        imgElement.src = url;
+        imgElement.onload = () => {
+          imgElement.classList.remove('loading-img');
+          // Salva no cache para uso futuro
+          imageCache.saveImage(url);
+        };
+      }
+    }
+    
+    // Carrega todas as imagens da página
+    function loadAllImages() {
+      const images = document.querySelectorAll('img[data-src]');
+      images.forEach(img => {
+        loadImageWithCache(img);
+      });
+    }
+    
     // Função para esconder o aviso após 3 segundos
     function hideUpdateNotice() {
       const notice = document.getElementById('update-notice');
@@ -392,6 +556,9 @@
     updateSlide();
     checkLogin();
     hideUpdateNotice(); // Inicia o temporizador para esconder o aviso
+    
+    // Carrega todas as imagens após a página estar pronta
+    document.addEventListener('DOMContentLoaded', loadAllImages);
   </script>
 
 </body>
