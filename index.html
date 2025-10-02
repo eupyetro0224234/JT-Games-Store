@@ -260,7 +260,11 @@
         </div>
       </div>
     </div>
-    <div class="text-center text-xs mt-6 theme-transition" style="color: var(--footer-text); opacity: 0.7;">&copy; 2025 JT Games Store. Todos os direitos reservados.</div>
+    <div class="text-center text-xs mt-6 theme-transition" style="color: var(--footer-text); opacity: 0.7;">
+      &copy; 2025 JT Games Store. Todos os direitos reservados.
+      <br>
+      <span id="contador-visitas">Carregando visitas...</span>
+    </div>
   </footer>
 
   <!-- Script do Carrossel e Detecção de Tema -->
@@ -559,6 +563,17 @@
     
     // Carrega todas as imagens após a página estar pronta
     document.addEventListener('DOMContentLoaded', loadAllImages);
+
+    // Busca o contador de visitas no backend
+    fetch("http://127.0.0.1:5000/visitas") // troque para seu domínio depois
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("contador-visitas").textContent =
+          `👥 Total de visitas: ${data.visitas}`;
+      })
+      .catch(err => {
+        console.error("Erro ao carregar contador:", err);
+      });
   </script>
 
 </body>
