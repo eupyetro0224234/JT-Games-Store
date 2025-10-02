@@ -565,7 +565,7 @@
     document.addEventListener('DOMContentLoaded', loadAllImages);
 
     // Busca o contador de visitas no backend
-    fetch("http://127.0.0.1:5000/visitas") // troque para seu domínio depois
+    fetch("https://eupyetro022.pythonanywhere.com/visitas") 
       .then(res => res.json())
       .then(data => {
         document.getElementById("contador-visitas").textContent =
@@ -573,6 +573,8 @@
       })
       .catch(err => {
         console.error("Erro ao carregar contador:", err);
+        document.getElementById("contador-visitas").textContent =
+          "👥 Contador indisponível";
       });
   </script>
 
