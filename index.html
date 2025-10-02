@@ -564,15 +564,20 @@
     // Carrega todas as imagens após a página estar pronta
     document.addEventListener('DOMContentLoaded', loadAllImages);
 
-    // Busca o contador de visitas no backend
-    fetch("https://eupyetro022.pythonanywhere.com/visitas") 
+    // Sistema de contador de visitas
+    // chama o backend para registrar a visita
+    fetch("https://eupyetro022.pythonanywhere.com/")
+      .then(() => console.log("Visita registrada no backend"))
+      .catch(err => console.error("Erro ao registrar visita:", err));
+
+    // busca o contador atualizado
+    fetch("https://eupyetro022.pythonanywhere.com/visitas")
       .then(res => res.json())
       .then(data => {
         document.getElementById("contador-visitas").textContent =
           `👥 Total de visitas: ${data.visitas}`;
       })
-      .catch(err => {
-        console.error("Erro ao carregar contador:", err);
+      .catch(() => {
         document.getElementById("contador-visitas").textContent =
           "👥 Contador indisponível";
       });
