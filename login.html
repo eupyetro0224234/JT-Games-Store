@@ -170,9 +170,9 @@
       
       <form id="login-form">
         <div class="mb-4">
-          <input type="text" id="nomeInput" placeholder="Nome completo" 
+          <input type="text" id="nomeInput" placeholder="Apelido" 
                  class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 theme-transition"/>
-          <div id="nomeError" class="error-message hidden">Por favor, informe seu nome completo</div>
+          <div id="nomeError" class="error-message hidden">Por favor, informe seu apelido</div>
         </div>
         
         <div class="mb-4">
@@ -197,6 +197,72 @@
 
   <!-- Script de Login e Tema -->
   <script>
+    const loginForm = document.getElementById("login-form");
+    const nomeInput = document.getElementById("nomeInput");
+    const emailInput = document.getElementById("emailInput");
+    const senhaInput = document.getElementById("senhaInput");
+    const statusMessage = document.getElementById("status-message");
+
+    const BACKEND_URL = "https://eupyetro022.pythonanywhere.com";
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const nome = nomeInput.value.trim();
+      const email = emailInput.value.trim().toLowerCase();
+      const senha = senhaInput.value;
+
+      if (!email || !senha) {
+        mostrarStatus("Email e senha são obrigatórios", "error");
+        return;
+      }
+
+      try {
+        const response = await fetch(`${BACKEND_URL}/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome, email, senha })
+        });
+
+        const result = await response.json();
+
+        if (result.status === "sucesso") {
+          // **Aqui está a correção importante**
+          // Salvar o nome que o backend retorna, respeitando manter_apelido
+          localStorage.setItem("user", result.nome);
+          localStorage.setItem("userEmail", email);
+          localStorage.setItem("manterApelido", result.manter_apelido);
+
+          window.location.href = "area-membros.html"; // redireciona para área de membros
+        } else {
+          mostrarStatus(result.mensagem || "Erro no login", "error");
+        }
+
+      } catch (err) {
+        console.error(err);
+        mostrarStatus("Erro de conexão. Tente novamente.", "error");
+      }
+    });
+
+    // Função para exibir mensagens de status
+    function mostrarStatus(msg, tipo) {
+      statusMessage.textContent = msg;
+      statusMessage.className = `status-message ${tipo === "error" ? "status-error" : "status-success"}`;
+      statusMessage.classList.remove("status-hidden");
+
+      setTimeout(() => {
+        statusMessage.classList.add("status-hidden");
+      }, 4000);
+    }
+
+    // Preencher nome automaticamente se usuário já estiver logado
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedEmail = localStorage.getItem("userEmail");
+      const savedName = localStorage.getItem("user");
+      if (savedEmail) emailInput.value = savedEmail;
+      if (savedName) nomeInput.value = savedName;
+    });
+
     // Verificar se o usuário já está logado e redirecionar
     function checkIfLoggedIn() {
       const user = localStorage.getItem('user');
@@ -230,16 +296,11 @@
     detectColorScheme();
 
     // Elementos do DOM
-    const loginForm = document.getElementById('login-form');
-    const nomeInput = document.getElementById('nomeInput');
-    const emailInput = document.getElementById('emailInput');
-    const senhaInput = document.getElementById('senhaInput');
     const nomeError = document.getElementById('nomeError');
     const emailError = document.getElementById('emailError');
     const senhaError = document.getElementById('senhaError');
     const loginBtn = document.getElementById('login-btn');
     const loginBtnNav = document.getElementById('login-btn-nav');
-    const statusMessage = document.getElementById('status-message');
 
     // Função para mostrar mensagens de status
     function showStatusMessage(message, type) {
@@ -301,49 +362,6 @@
       return isValid;
     }
 
-    // Login / Registro via backend
-    async function handleLogin(e) {
-      if (e) e.preventDefault();
-      
-      // Se o nome estiver vazio, usamos o email como nome
-      let nome = nomeInput.value.trim() || emailInput.value.trim();
-      const email = emailInput.value.trim();
-      const senha = senhaInput.value;
-
-      // Validação mínima de email e senha
-      if (!email || senha.length < 6) {
-        showStatusMessage('❌ Preencha corretamente o email e a senha (mínimo 6 caracteres).', 'error');
-        return;
-      }
-
-      // Show loading state
-      loginForm.classList.add('loading');
-      loginBtn.classList.add('btn-loading');
-      
-      try {
-        const response = await fetch('https://eupyetro022.pythonanywhere.com/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nome, email, senha })
-        });
-
-        const result = await response.json();
-
-        if(result.status === 'sucesso'){
-          localStorage.setItem('user', nome);
-          localStorage.setItem('userEmail', email);
-          window.location.href = 'area-membros.html';
-        } else {
-          showStatusMessage('❌ ' + result.mensagem, 'error');
-        }
-      } catch(err) {
-        showStatusMessage('❌ Não foi possível conectar ao servidor.', 'error');
-      } finally {
-        loginForm.classList.remove('loading');
-        loginBtn.classList.remove('btn-loading');
-      }
-    }
-
     // Script para verificar se o usuário está logado e atualizar o botão de login
     function checkLogin() {
       const user = localStorage.getItem('user');
@@ -360,8 +378,6 @@
       }
     }
 
-    loginForm.addEventListener('submit', handleLogin);
-    
     // Remove error styles when user starts typing
     nomeInput.addEventListener('input', () => {
       nomeInput.classList.remove('input-error');
