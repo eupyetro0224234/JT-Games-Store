@@ -575,7 +575,7 @@
       .then(res => res.json())
       .then(data => {
         document.getElementById("contador-visitas").textContent =
-          `👥 Total de visitas: ${data.visitas}`;
+          `👥 ${data.visitas}`;
       })
       .catch(() => {
         document.getElementById("contador-visitas").textContent =
