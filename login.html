@@ -134,9 +134,64 @@
     .status-hidden {
       display: none;
     }
+    
+    /* Estilos para alternância entre login e registro */
+    .form-toggle {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #d1d5db;
+    }
+    
+    .toggle-btn {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      background-color: #f3f4f6;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+    
+    .toggle-btn.active {
+      background-color: #3b82f6;
+      color: white;
+    }
+    
+    [data-theme="dark"] .toggle-btn {
+      background-color: #374151;
+      color: #e5e7eb;
+    }
+    
+    [data-theme="dark"] .toggle-btn.active {
+      background-color: #1d4ed8;
+      color: white;
+    }
+    
+    .form-section {
+      display: none;
+    }
+    
+    .form-section.active {
+      display: block;
+    }
+    
+    /* Container para mensagens flutuantes */
+    .message-container {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      z-index: 1001;
+      max-width: 300px;
+    }
   </style>
 </head>
 <body class="theme-transition" style="background-color: var(--bg-primary); color: var(--text-primary);">
+  
+  <!-- Container para mensagens flutuantes -->
+  <div id="messageContainer" class="message-container"></div>
   
   <!-- Navbar (cabeçalho idêntico ao do segundo código) -->
   <nav class="text-white shadow-lg fixed w-full top-0 z-40 theme-transition" style="background-image: var(--nav-bg);">
@@ -163,12 +218,19 @@
   <!-- Formulário de Login / Registro -->
   <section class="flex justify-center items-center min-h-[70vh] px-4">
     <div class="w-full max-w-md p-8 rounded-2xl shadow-xl theme-transition" style="background-color: var(--card-bg);">
-      <h2 class="text-2xl font-bold mb-6 text-center">Login / Registro</h2>
+      <h2 class="text-2xl font-bold mb-6 text-center">Acesse Sua Conta</h2>
+      
+      <!-- Alternador entre Login e Registro -->
+      <div class="form-toggle">
+        <div class="toggle-btn active" id="login-toggle">Login</div>
+        <div class="toggle-btn" id="register-toggle">Registrar</div>
+      </div>
       
       <!-- Área para mensagens de status -->
       <div id="status-message" class="status-message status-hidden"></div>
       
-      <form id="login-form">
+      <!-- Formulário de Login -->
+      <form id="login-form" class="form-section active">
         <div class="mb-4">
           <input type="email" id="emailInput" placeholder="Email" 
                  class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 theme-transition"/>
@@ -183,7 +245,33 @@
         
         <button type="submit" id="login-btn" 
                 class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition theme-transition">
-          Entrar / Registrar
+          Entrar
+        </button>
+      </form>
+      
+      <!-- Formulário de Registro -->
+      <form id="register-form" class="form-section">
+        <div class="mb-4">
+          <input type="text" id="nomeInput" placeholder="Nome" 
+                 class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 theme-transition"/>
+          <div id="nomeError" class="error-message hidden">Por favor, informe seu nome</div>
+        </div>
+        
+        <div class="mb-4">
+          <input type="email" id="emailRegInput" placeholder="Email" 
+                 class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 theme-transition"/>
+          <div id="emailRegError" class="error-message hidden">Por favor, informe um email válido</div>
+        </div>
+        
+        <div class="mb-6">
+          <input type="password" id="senhaRegInput" placeholder="Senha" 
+                 class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 theme-transition"/>
+          <div id="senhaRegError" class="error-message hidden">A senha deve ter pelo menos 6 caracteres</div>
+        </div>
+        
+        <button type="submit" id="register-btn" 
+                class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition theme-transition">
+          Registrar
         </button>
       </form>
     </div>
@@ -191,13 +279,58 @@
 
   <!-- Script de Login e Tema -->
   <script>
+    const BACKEND_URL = "https://eupyetro022.pythonanywhere.com";
+    
+    // Elementos do DOM
     const loginForm = document.getElementById("login-form");
+    const registerForm = document.getElementById("register-form");
     const emailInput = document.getElementById("emailInput");
     const senhaInput = document.getElementById("senhaInput");
+    const nomeInput = document.getElementById("nomeInput");
+    const emailRegInput = document.getElementById("emailRegInput");
+    const senhaRegInput = document.getElementById("senhaRegInput");
     const statusMessage = document.getElementById("status-message");
+    const loginToggle = document.getElementById("login-toggle");
+    const registerToggle = document.getElementById("register-toggle");
+    
+    // Função para mostrar mensagens flutuantes
+    function mostrarMensagem(mensagem, tipo = 'sucesso') {
+      const messageContainer = document.getElementById('messageContainer');
+      const messageDiv = document.createElement('div');
+      
+      messageDiv.className = `p-4 rounded-lg shadow-lg mb-2 theme-transition ${
+        tipo === 'sucesso' 
+          ? 'bg-green-500 text-white' 
+          : 'bg-red-500 text-white'
+      }`;
+      messageDiv.textContent = mensagem;
+      
+      messageContainer.appendChild(messageDiv);
+      
+      // Remove a mensagem após 5 segundos
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 5000);
+    }
 
-    const BACKEND_URL = "https://eupyetro022.pythonanywhere.com";
+    // Alternar entre login e registro
+    loginToggle.addEventListener("click", () => {
+      loginToggle.classList.add("active");
+      registerToggle.classList.remove("active");
+      loginForm.classList.add("active");
+      registerForm.classList.remove("active");
+      hideStatusMessage();
+    });
+    
+    registerToggle.addEventListener("click", () => {
+      registerToggle.classList.add("active");
+      loginToggle.classList.remove("active");
+      registerForm.classList.add("active");
+      loginForm.classList.remove("active");
+      hideStatusMessage();
+    });
 
+    // Login
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       
@@ -205,7 +338,7 @@
       const senha = senhaInput.value;
 
       if (!email || !senha) {
-        mostrarStatus("Email e senha são obrigatórios", "error");
+        mostrarMensagem("Email e senha são obrigatórios", "erro");
         return;
       }
 
@@ -232,14 +365,14 @@
           localStorage.setItem("user", result.nome);
           localStorage.setItem("userEmail", email);
           
-          mostrarStatus("Login realizado com sucesso!", "success");
+          mostrarMensagem("Login realizado com sucesso!", "sucesso");
           
           // Redirecionar após breve delay
           setTimeout(() => {
             window.location.href = "area-membros.html";
           }, 1000);
         } else {
-          mostrarStatus(result.mensagem || "Erro no login", "error");
+          mostrarMensagem(result.mensagem || "Erro no login", "erro");
         }
 
       } catch (err) {
@@ -249,11 +382,72 @@
         loginBtn.classList.remove('btn-loading');
         loginBtn.disabled = false;
         
-        mostrarStatus("Erro de conexão. Tente novamente.", "error");
+        mostrarMensagem("Erro de conexão. Tente novamente.", "erro");
       }
     });
 
-    // Função para exibir mensagens de status
+    // Registro
+    registerForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const nome = nomeInput.value.trim();
+      const email = emailRegInput.value.trim().toLowerCase();
+      const senha = senhaRegInput.value;
+
+      if (!nome || !email || !senha) {
+        mostrarMensagem("Todos os campos são obrigatórios", "erro");
+        return;
+      }
+
+      try {
+        // Mostrar estado de carregamento
+        const registerBtn = document.getElementById('register-btn');
+        registerBtn.classList.add('btn-loading');
+        registerBtn.disabled = true;
+
+        const response = await fetch(`${BACKEND_URL}/register`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome, email, senha })
+        });
+
+        const result = await response.json();
+
+        // Remover estado de carregamento
+        registerBtn.classList.remove('btn-loading');
+        registerBtn.disabled = false;
+
+        if (result.status === "sucesso") {
+          // Salvar os dados do usuário
+          localStorage.setItem("user", nome);
+          localStorage.setItem("userEmail", email);
+          
+          mostrarMensagem("Registro realizado com sucesso!", "sucesso");
+          
+          // Redirecionar após breve delay
+          setTimeout(() => {
+            window.location.href = "area-membros.html";
+          }, 1000);
+        } else {
+          if (result.mensagem && result.mensagem.includes("já existe")) {
+            mostrarMensagem("Este email já está registrado. Faça login.", "erro");
+          } else {
+            mostrarMensagem(result.mensagem || "Erro no registro", "erro");
+          }
+        }
+
+      } catch (err) {
+        console.error(err);
+        // Remover estado de carregamento em caso de erro
+        const registerBtn = document.getElementById('register-btn');
+        registerBtn.classList.remove('btn-loading');
+        registerBtn.disabled = false;
+        
+        mostrarMensagem("Erro de conexão. Tente novamente.", "erro");
+      }
+    });
+
+    // Função para exibir mensagens de status (mantida para compatibilidade)
     function mostrarStatus(msg, tipo) {
       statusMessage.textContent = msg;
       statusMessage.className = `status-message ${tipo === "error" ? "status-error" : "status-success"}`;
@@ -293,6 +487,7 @@
       // Preencher email automaticamente se usuário já estiver logado
       if (savedEmail) {
         emailInput.value = savedEmail;
+        emailRegInput.value = savedEmail;
       }
     }
 
@@ -317,9 +512,12 @@
       document.documentElement.setAttribute('data-theme', theme);
     }
 
-    // Elementos do DOM
+    // Elementos do DOM para validação
     const emailError = document.getElementById('emailError');
     const senhaError = document.getElementById('senhaError');
+    const nomeError = document.getElementById('nomeError');
+    const emailRegError = document.getElementById('emailRegError');
+    const senhaRegError = document.getElementById('senhaRegError');
     const loginBtnNav = document.getElementById('login-btn-nav');
 
     // Função para mostrar mensagens de status
@@ -400,6 +598,24 @@
     senhaInput.addEventListener('input', () => {
       senhaInput.classList.remove('input-error');
       senhaError.classList.add('hidden');
+      hideStatusMessage();
+    });
+    
+    nomeInput.addEventListener('input', () => {
+      nomeInput.classList.remove('input-error');
+      nomeError.classList.add('hidden');
+      hideStatusMessage();
+    });
+    
+    emailRegInput.addEventListener('input', () => {
+      emailRegInput.classList.remove('input-error');
+      emailRegError.classList.add('hidden');
+      hideStatusMessage();
+    });
+    
+    senhaRegInput.addEventListener('input', () => {
+      senhaRegInput.classList.remove('input-error');
+      senhaRegError.classList.add('hidden');
       hideStatusMessage();
     });
 
