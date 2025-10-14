@@ -15,8 +15,12 @@
       flex-direction: column;
       min-height: 100vh;
     }
-    .main-content { flex: 1; }
-
+    
+    .main-content {
+      flex: 1;
+    }
+    
+    /* Variáveis CSS para temas */
     :root {
       --bg-primary: #f7fafc;
       --bg-secondary: #ffffff;
@@ -27,6 +31,7 @@
       --footer-bg: #1a202c;
       --footer-text: #cbd5e0;
     }
+    
     [data-theme="dark"] {
       --bg-primary: #1a202c;
       --bg-secondary: #2d3748;
@@ -37,34 +42,44 @@
       --footer-bg: #0f141c;
       --footer-text: #e2e8f0;
     }
+    
     .theme-transition {
       transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     }
+    
+    /* Estilo para os ícones das redes sociais */
     .social-icon {
-      width: 20px; height: 20px;
-      display: inline-block; vertical-align: middle;
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      vertical-align: middle;
       margin-right: 5px;
     }
+    
+    /* Estilo para o link da loja original */
     .original-store-link {
-      color: #60a5fa; text-decoration: underline; cursor: pointer;
+      color: #60a5fa;
+      text-decoration: underline;
+      cursor: pointer;
     }
-    .original-store-link:hover { color: #93c5fd; }
+    .original-store-link:hover {
+      color: #93c5fd;
+    }
   </style>
 </head>
-
 <body class="theme-transition" style="background-color: var(--bg-primary); color: var(--text-primary);">
 
   <!-- Navbar -->
   <nav class="text-white shadow-lg fixed w-full top-0 z-50 theme-transition" style="background-image: var(--nav-bg);">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-extrabold tracking-wide">
-        <a href="../">JT Games Store</a>
+        <a href="index.html">JT Games Store</a>
       </h1>
       <ul class="hidden md:flex space-x-6 font-medium">
-        <li><a href="../" class="hover:text-gray-200">Início</a></li>
-        <li><a href="../populares/" class="hover:text-gray-200 font-bold underline">Populares</a></li>
-        <li><a href="../novos/" class="hover:text-gray-200">Novos</a></li>
-        <li><a href="../categorias/" class="hover:text-gray-200">Categorias</a></li>
+        <li><a href="index.html" class="hover:text-gray-200">Início</a></li>
+        <li><a href="populares.html" class="hover:text-gray-200 font-bold underline">Populares</a></li>
+        <li><a href="#" class="hover:text-gray-200">Novos</a></li>
+        <li><a href="categorias.html" class="hover:text-gray-200">Categorias</a></li>
       </ul>
       <div class="flex items-center space-x-4">
         <input type="text" placeholder="Buscar jogos..." class="hidden md:block p-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-white theme-transition" style="background-color: var(--bg-secondary); color: var(--text-primary);" />
@@ -73,18 +88,18 @@
     </div>
   </nav>
 
+  <!-- Conteúdo principal com classe para flexibilidade -->
   <div class="main-content">
+    <!-- Espaço por causa da navbar fixa -->
     <div class="pt-24"></div>
 
+    <!-- Cabeçalho da página de populares -->
     <div class="max-w-7xl mx-auto px-6 mb-10">
       <h1 class="text-3xl font-bold mb-2">Jogos Populares</h1>
       <p class="text-lg theme-transition" style="color: var(--text-secondary);">O jogo mais popular da JT Games Store</p>
-      <!-- 🔙 Botão de Voltar -->
-      <a href="../" class="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition">
-        ⬅ Voltar para Início
-      </a>
     </div>
 
+    <!-- Seção de Jogos Populares -->
     <main class="max-w-7xl mx-auto px-6 mb-16">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 
@@ -97,11 +112,13 @@
           <div class="p-4">
             <div class="flex justify-between items-start">
               <h3 class="font-bold text-lg">Cuphead</h3>
-              <div class="flex items-center bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-bold">★ 4.9</div>
+              <div class="flex items-center bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-bold">
+                ★ 4.9
+              </div>
             </div>
             <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Versão completa com a DLC inclusa!</p>
             <div class="flex justify-between items-center mt-4">
-              <a href="../Cuphead/" class="text-white px-4 py-2 rounded-lg text-sm hover:opacity-90 transition theme-transition" style="background-image: var(--nav-bg);">Ver Detalhes</a>
+              <a href="Cuphead.html" class="text-white px-4 py-2 rounded-lg text-sm hover:opacity-90 transition theme-transition" style="background-image: var(--nav-bg);">Ver Detalhes</a>
             </div>
           </div>
         </div>
@@ -110,21 +127,20 @@
     </main>
   </div>
 
+  <!-- Rodapé -->
   <footer class="py-10 theme-transition" style="background-color: var(--footer-bg); color: var(--footer-text);">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
       <div>
         <h3 class="font-bold text-lg">JT Games Store</h3>
-        <p class="text-sm mt-2">Sua loja digital de jogos favorita. Essa é apenas uma reformulação visual, a 
-          <span class="original-store-link" onclick="window.open('https://jtgames-ofc.github.io/JT-Games-Store-', '_blank')">loja original</span> pertence a JT Games.
-        </p>
+        <p class="text-sm mt-2">Sua loja digital de jogos favorita. Essa é apenas uma reformulação visual, a <span class="original-store-link" onclick="window.open('https://jtgames-ofc.github.io/JT-Games-Store-', '_blank')">loja original</span> pertence a JT Games.</p>
       </div>
       <div>
         <h3 class="font-bold text-lg">Links</h3>
         <ul class="mt-2 space-y-1 text-sm">
-          <li><a href="../" class="hover:text-white">Início</a></li>
-          <li><a href="../populares/" class="hover:text-white">Populares</a></li>
-          <li><a href="../categorias/" class="hover:text-white">Categorias</a></li>
-          <li><a href="../contato/" class="hover:text-white">Contato</a></li>
+          <li><a href="index.html" class="hover:text-white">Início</a></li>
+          <li><a href="populares.html" class="hover:text-white">Populares</a></li>
+          <li><a href="categorias.html" class="hover:text-white">Categorias</a></li>
+          <li><a href="#" class="hover:text-white">Contato</a></li>
         </ul>
       </div>
       <div>
@@ -144,33 +160,51 @@
     <div class="text-center text-xs mt-6 theme-transition" style="color: var(--footer-text); opacity: 0.7;">&copy; 2025 JT Games Store. Todos os direitos reservados.</div>
   </footer>
 
+  <!-- Detecção de Tema -->
   <script>
+    // Sistema de tema automático baseado nas preferências do sistema
     function detectColorScheme() {
       let theme = "light";
+      
+      // Verifica a preferência do sistema
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         theme = "dark";
       }
+      
+      // Aplica o tema
       document.documentElement.setAttribute('data-theme', theme);
     }
+    
+    // Observa mudanças na preferência do sistema
     const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
     colorSchemeQuery.addEventListener('change', (e) => {
-      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      if (e.matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
     });
-
+    
+    // Script para verificar se o usuário está logado
     function checkLogin() {
       const user = localStorage.getItem('user');
-      const btn = document.getElementById('login-btn');
       if (user) {
-        btn.textContent = `Olá, ${user}`;
-        btn.onclick = () => { window.location.href = '../area-membros/'; };
+        document.getElementById('login-btn').textContent = `Olá, ${user}`;
+        document.getElementById('login-btn').onclick = () => {
+          window.location.href = 'area-membros.html'; // vai direto para a área de membros
+        }
       } else {
-        btn.textContent = 'Login';
-        btn.onclick = () => { window.location.href = '../login/'; };
+        document.getElementById('login-btn').textContent = 'Login';
+        document.getElementById('login-btn').onclick = () => {
+          window.location.href = 'login.html';
+        }
       }
     }
 
+    // Inicializa
     detectColorScheme();
     checkLogin();
   </script>
+
 </body>
 </html>
