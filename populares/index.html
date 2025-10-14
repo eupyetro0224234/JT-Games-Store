@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Categorias - JT Games Store</title>
+  <title>Jogos Populares - JT Games Store</title>
   <link rel="icon" href="https://yt3.googleusercontent.com/tZjRjVHxbqoDXGHVwPeQ-G4wl_gM7NSPYEZtolQ6jf51881BOzfWe1pZVct7e15q4ZHZwRpjbw=s160-c-k-c0x00ffffff-no-rj" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -11,6 +11,13 @@
     body { 
       font-family: 'Inter', sans-serif;
       transition: background-color 0.3s, color 0.3s;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    .main-content {
+      flex: 1;
     }
     
     :root {
@@ -72,9 +79,9 @@
       </h1>
       <ul class="hidden md:flex space-x-6 font-medium">
         <li><a href="../" class="hover:text-gray-200">Início</a></li>
-        <li><a href="../populares/" class="hover:text-gray-200">Populares</a></li>
-        <li><a href="#" class="hover:text-gray-200">Novos</a></li>
-        <li><a href="#" class="hover:text-gray-200 font-bold underline current-page">Categorias</a></li>
+        <li><a href="#" class="hover:text-gray-200 font-bold underline current-page">Populares</a></li>
+        <li><a href="../novos/" class="hover:text-gray-200">Novos</a></li>
+        <li><a href="../categorias/" class="hover:text-gray-200">Categorias</a></li>
       </ul>
       <div class="flex items-center space-x-4">
         <input type="text" placeholder="Buscar jogos..." class="hidden md:block p-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-white theme-transition" style="background-color: var(--bg-secondary); color: var(--text-primary);" />
@@ -83,75 +90,41 @@
     </div>
   </nav>
 
-  <div class="pt-24"></div>
+  <div class="main-content">
+    <div class="pt-24"></div>
 
-  <div class="max-w-7xl mx-auto px-6 mb-10">
-    <h1 class="text-3xl font-bold mb-2">Categorias de Jogos</h1>
-    <p class="text-lg theme-transition" style="color: var(--text-secondary);">Explore nossa coleção organizada por categorias</p>
-  </div>
+    <div class="max-w-7xl mx-auto px-6 mb-10">
+      <h1 class="text-3xl font-bold mb-2">Jogos Populares</h1>
+      <p class="text-lg theme-transition" style="color: var(--text-secondary);">O jogo mais popular da JT Games Store</p>
+    </div>
 
-  <main class="max-w-7xl mx-auto px-6 mb-16">
-    <section class="mb-16">
-      <div class="flex items-center justify-between mb-8">
-        <h2 class="text-2xl font-bold">Jogos de Plataforma</h2>
-      </div>
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="rounded-2xl shadow-md overflow-hidden theme-transition hover:shadow-xl transition" style="background-color: var(--card-bg);">
-          <div class="relative overflow-hidden">
+    <main class="max-w-7xl mx-auto px-6 mb-16">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+        <div class="rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden theme-transition" style="background-color: var(--card-bg);">
+          <div class="relative">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDYVrtJU9Sto-xkAXZNoYfbVactu-RBfOccKBfp_w6XLJ9lBKohUwZlxw&s=10" alt="Cuphead" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
+            <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-lg">🔥 #1 Popular</span>
           </div>
           <div class="p-4">
-            <h3 class="font-bold text-lg">Cuphead</h3>
-            <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Ação e tiroteio em estilo desenho animado dos anos 30.</p>
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-lg">Cuphead</h3>
+              <div class="flex items-center bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-bold">
+                ★ 4.9
+              </div>
+            </div>
+            <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Versão completa com a DLC inclusa!</p>
             <div class="flex justify-between items-center mt-4">
               <a href="../games/cuphead/" class="text-white px-4 py-2 rounded-lg text-sm hover:opacity-90 transition theme-transition" style="background-image: var(--nav-bg);">Ver Detalhes</a>
             </div>
           </div>
         </div>
-        
-        <div class="rounded-2xl shadow-md overflow-hidden theme-transition hover:shadow-xl transition" style="background-color: var(--card-bg);">
-          <div class="overflow-hidden">
-            <img src="https://images.squarespace-cdn.com/content/v1/606d159a953867291018f801/1619987722169-VV6ZASHHZNRBJW9X0PLK/Key_Art_02_layeredjpg.jpg?format=1500w" alt="Hollow Knight" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold text-lg">Hollow Knight</h3>
-            <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Aventura de ação épica em um reino de insetos arruinado.</p>
-          </div>
-        </div>
-        
-        <div class="rounded-2xl shadow-md overflow-hidden theme-transition hover:shadow-xl transition" style="background-color: var(--card-bg);">
-          <div class="overflow-hidden">
-            <img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000006442/691ba3e0801180a9864cc8a7694b6f98097f9d9799bc7e3dc6db92f086759252" alt="Celeste" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold text-lg">Celeste</h3>
-            <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Jogo de plataforma desafiador sobre escalar uma montanha.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <section class="mb-16">
-      <div class="flex items-center justify-between mb-8">
-        <h2 class="text-2xl font-bold">Jogos de Terror</h2>
-      </div>
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="rounded-2xl shadow-md overflow-hidden theme-transition hover:shadow-xl transition" style="background-color: var(--card-bg);">
-          <div class="overflow-hidden">
-            <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2638370/header.jpg" alt="FNAF Into the Pit" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold text-lg">Five Nights: Into the Pit</h3>
-            <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Terror 2D inspirado na história "Into the Pit".</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
 
-  <footer class="mt-16 py-10 theme-transition" style="background-color: var(--footer-bg); color: var(--footer-text);">
+      </div>
+    </main>
+  </div>
+
+  <footer class="py-10 theme-transition" style="background-color: var(--footer-bg); color: var(--footer-text);">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
       <div>
         <h3 class="font-bold text-lg">JT Games Store</h3>
@@ -161,9 +134,9 @@
         <h3 class="font-bold text-lg">Links</h3>
         <ul class="mt-2 space-y-1 text-sm">
           <li><a href="../" class="hover:text-white">Início</a></li>
-          <li><a href="../populares/" class="hover:text-white">Populares</a></li>
-          <li><a href="../categorias/" class="hover:text-white current-page">Categorias</a></li>
-          <li><a href="#" class="hover:text-white">Contato</a></li>
+          <li><a href="../populares/" class="hover:text-white current-page">Populares</a></li>
+          <li><a href="../categorias/" class="hover:text-white">Categorias</a></li>
+          <li><a href="../contato/" class="hover:text-white">Contato</a></li>
         </ul>
       </div>
       <div>
