@@ -234,13 +234,13 @@
   <nav class="text-white shadow-lg fixed w-full top-0 z-50 theme-transition" style="background-image: var(--nav-bg);">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-extrabold tracking-wide">
-        <a href="../">JT Games Store</a>
+        <a href="../../">JT Games Store</a>
       </h1>
       <ul class="hidden md:flex space-x-6 font-medium">
-        <li><a href="../" class="hover:text-gray-200">Início</a></li>
-        <li><a href="../populares/" class="hover:text-gray-200">Populares</a></li>
-        <li><a href="../novos/" class="hover:text-gray-200">Novos</a></li>
-        <li><a href="../categorias/" class="hover:text-gray-200">Categorias</a></li>
+        <li><a href="../../" class="hover:text-gray-200">Início</a></li>
+        <li><a href="../../populares/" class="hover:text-gray-200">Populares</a></li>
+        <li><a href="../../novos/" class="hover:text-gray-200">Novos</a></li>
+        <li><a href="../../categorias/" class="hover:text-gray-200">Categorias</a></li>
       </ul>
       <div class="flex items-center space-x-4">
         <input type="text" placeholder="Buscar jogos..." class="hidden md:block p-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-white theme-transition" style="background-color: var(--bg-secondary); color: var(--text-primary);" />
@@ -388,10 +388,10 @@
       <div>
         <h3 class="font-bold text-lg">Links</h3>
         <ul class="mt-2 space-y-1 text-sm">
-           <li><a href="../" class="hover:text-white">Início</a></li>
-           <li><a href="../populares/" class="hover:text-white">Populares</a></li>
-           <li><a href="../categorias/" class="hover:text-white">Categorias</a></li>
-          <li><a href="../contato/" class="hover:text-white">Contato</a></li>
+           <li><a href="../../" class="hover:text-white">Início</a></li>
+           <li><a href="../../populares/" class="hover:text-white">Populares</a></li>
+           <li><a href="../../categorias/" class="hover:text-white">Categorias</a></li>
+          <li><a href="../../contato/" class="hover:text-white">Contato</a></li>
         </ul>
         </div>
 
@@ -455,12 +455,12 @@
       if (user) {
         document.getElementById('login-btn').textContent = `Olá, ${user}`;
         document.getElementById('login-btn').onclick = () => {
-          window.location.href = '../membros/';
+          window.location.href = '../../membros/';
         }
       } else {
         document.getElementById('login-btn').textContent = 'Login';
         document.getElementById('login-btn').onclick = () => {
-          window.location.href = '../login/';
+          window.location.href = '../../login/';
         }
       }
     }
