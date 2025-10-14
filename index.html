@@ -92,6 +92,11 @@
       justify-content: center;
       color: #4a5568;
     }
+    
+    /* Estilo para links da página atual */
+    .current-page-link {
+      cursor: default;
+    }
   </style>
 </head>
 <body class="theme-transition" style="background-color: var(--bg-primary); color: var(--text-primary);">
@@ -107,10 +112,10 @@
   <nav class="text-white shadow-lg fixed w-full top-0 z-40 theme-transition" style="background-image: var(--nav-bg);">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-extrabold tracking-wide">
-        <a href="#">JT Games Store</a>
+        <a href="#" class="current-page-link">JT Games Store</a>
       </h1>
       <ul class="hidden md:flex space-x-6 font-medium">
-        <li><a href="#" class="hover:text-gray-200 font-bold underline">Início</a></li>
+        <li><a href="#" class="hover:text-gray-200 font-bold underline current-page-link">Início</a></li>
         <a href="populares/">Populares</a>
         <li><a href="#" class="hover:text-gray-200">Novos</a></li>
         <li><a href="categorias/" class="hover:text-gray-200">Categorias</a></li>
@@ -239,7 +244,7 @@
       <div>
         <h3 class="font-bold text-lg">Links</h3>
         <ul class="mt-2 space-y-1 text-sm">
-           <li><a href="#" class="hover:text-white">Início</a></li>
+           <li><a href="#" class="hover:text-white current-page-link">Início</a></li>
            <li><a href="populares/" class="hover:text-white">Populares</a></li>
            <li><a href="categorias/" class="hover:text-white">Categorias</a></li>
           <li><a href="#" class="hover:text-white">Contato</a></li>
@@ -554,12 +559,42 @@
       }
     }
 
+    // Função para desativar links da página atual
+    function disableCurrentPageLinks() {
+      const currentPath = window.location.pathname;
+      const links = document.querySelectorAll('a[href]');
+      
+      links.forEach(link => {
+        const href = link.getAttribute('href');
+        
+        // Se o link aponta para a página atual (# ou vazio)
+        if (href === '#' || href === '' || href === window.location.href) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Opcional: adicionar uma classe para estilização visual
+            link.classList.add('current-page-link');
+          });
+        }
+        
+        // Se o link aponta para a raiz (página inicial)
+        if (href === '/' || href === 'index.html' || href === './') {
+          link.addEventListener('click', (e) => {
+            if (currentPath === '/' || currentPath.endsWith('index.html')) {
+              e.preventDefault();
+              link.classList.add('current-page-link');
+            }
+          });
+        }
+      });
+    }
+
     // Inicialização
     detectColorScheme();
     resetInterval();
     updateSlide();
     checkLogin();
     hideUpdateNotice(); // Inicia o temporizador para esconder o aviso
+    disableCurrentPageLinks(); // Desativa links da página atual
     
     // Carrega todas as imagens após a página estar pronta
     document.addEventListener('DOMContentLoaded', loadAllImages);
