@@ -58,7 +58,7 @@
   .video-container {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* Proporção 16:9 */
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     border-radius: 8px;
@@ -117,7 +117,6 @@
     display: block;
   }
 
-  /* Estilo para os ícones das redes sociais */
   .social-icon {
     width: 20px;
     height: 20px;
@@ -126,7 +125,6 @@
     margin-right: 5px;
   }
 
-  /* Estilo para o link da loja original */
   .original-store-link {
     color: #60a5fa;
     text-decoration: underline;
@@ -136,7 +134,6 @@
     color: #93c5fd;
   }
 
-  /* Estilo para mensagens */
   .message-container {
     position: fixed;
     top: 100px;
@@ -175,9 +172,9 @@
   @media (max-width: 600px) {
   .app-icon-mobile {
     display: flex;
-    justify-content: center; /* Centraliza horizontal */
-    align-items: center;     /* Centraliza vertical dentro do bloco */
-    width: 100%;             /* Ocupa a largura total */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     margin-bottom: 15px;
     }
 
@@ -214,7 +211,7 @@
 
     .app-icon-mobile img {
       display: block;
-      margin-left: auto;  /* força centralização */
+      margin-left: auto;
       margin-right: auto;
     }
   }
@@ -232,19 +229,18 @@
 </head>
 <body class="theme-transition" style="background-color: var(--bg-primary); color: var(--text-primary);">
 
-  <!-- Container para mensagens -->
   <div id="messageContainer" class="message-container"></div>
 
   <nav class="text-white shadow-lg fixed w-full top-0 z-50 theme-transition" style="background-image: var(--nav-bg);">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-extrabold tracking-wide">
-        <a href="index.html">JT Games Store</a>
+        <a href="../">JT Games Store</a>
       </h1>
       <ul class="hidden md:flex space-x-6 font-medium">
-        <li><a href="index.html" class="hover:text-gray-200">Início</a></li>
-        <li><a href="populares.html" class="hover:text-gray-200">Populares</a></li>
-        <li><a href="#" class="hover:text-gray-200">Novos</a></li>
-        <li><a href="categorias.html" class="hover:text-gray-200">Categorias</a></li>
+        <li><a href="../" class="hover:text-gray-200">Início</a></li>
+        <li><a href="../populares/" class="hover:text-gray-200">Populares</a></li>
+        <li><a href="../novos/" class="hover:text-gray-200">Novos</a></li>
+        <li><a href="../categorias/" class="hover:text-gray-200">Categorias</a></li>
       </ul>
       <div class="flex items-center space-x-4">
         <input type="text" placeholder="Buscar jogos..." class="hidden md:block p-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-white theme-transition" style="background-color: var(--bg-secondary); color: var(--text-primary);" />
@@ -392,10 +388,10 @@
       <div>
         <h3 class="font-bold text-lg">Links</h3>
         <ul class="mt-2 space-y-1 text-sm">
-           <li><a href="index.html" class="hover:text-white">Início</a></li>
-           <li><a href="populares.html" class="hover:text-white">Populares</a></li>
-           <li><a href="categorias.html" class="hover:text-white">Categorias</a></li>
-          <li><a href="#" class="hover:text-white">Contato</a></li>
+           <li><a href="../" class="hover:text-white">Início</a></li>
+           <li><a href="../populares/" class="hover:text-white">Populares</a></li>
+           <li><a href="../categorias/" class="hover:text-white">Categorias</a></li>
+          <li><a href="../contato/" class="hover:text-white">Contato</a></li>
         </ul>
         </div>
 
@@ -417,7 +413,6 @@
   </footer>
 
   <script>
-    // Função para mostrar mensagens na interface
     function mostrarMensagem(mensagem, tipo = 'sucesso') {
       const messageContainer = document.getElementById('messageContainer');
       const messageDiv = document.createElement('div');
@@ -431,7 +426,6 @@
       
       messageContainer.appendChild(messageDiv);
       
-      // Remove a mensagem após 5 segundos
       setTimeout(() => {
         messageDiv.remove();
       }, 5000);
@@ -456,23 +450,21 @@
       }
     });
     
-    // Script para verificar se o usuário está logado
     function checkLogin() {
       const user = localStorage.getItem('user');
       if (user) {
         document.getElementById('login-btn').textContent = `Olá, ${user}`;
         document.getElementById('login-btn').onclick = () => {
-          window.location.href = 'area-membros.html'; // vai direto para a área de membros
+          window.location.href = '../membros/';
         }
       } else {
         document.getElementById('login-btn').textContent = 'Login';
         document.getElementById('login-btn').onclick = () => {
-          window.location.href = 'login.html';
+          window.location.href = '../login/';
         }
       }
     }
 
-    // Função para alternar entre capturas de tela e vídeo
     function setupMediaToggle() {
       const toggleScreenshots = document.getElementById('toggle-screenshots');
       const toggleVideo = document.getElementById('toggle-video');
@@ -499,35 +491,29 @@
       const formBox = document.getElementById("form-box");
       const form = document.getElementById("pre-registro-form");
 
-      // Configurar o toggle de mídia
       setupMediaToggle();
 
-      // Função para mostrar o formulário
       function showForm() {
         formBox.style.display = "block";
         preRegBtn.style.display = "none";
       }
 
-      // Função para esconder o formulário
       function hideForm() {
         formBox.style.display = "none";
         preRegBtn.style.display = "block";
       }
 
-      // Evento de clique no botão de pré-registro
       preRegBtn.addEventListener("click", function (e) {
         e.preventDefault();
         showForm();
       });
 
-      // Evento de tecla ESC para fechar o formulário
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && formBox.style.display === "block") {
           hideForm();
         }
       });
 
-      // Envio do formulário
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
         const nome = document.getElementById("nome").value;
@@ -543,17 +529,13 @@
           const result = await response.json();
 
           if(result.status === "sucesso") {
-            // Usando o novo sistema de mensagens
             mostrarMensagem("✅ Pré-registro realizado com sucesso! Você será notificado em breve.", "sucesso");
-            // Limpa o form
             form.reset();
             hideForm();
           } else {
-            // Usando o novo sistema de mensagens
             mostrarMensagem("❌ Erro: " + result.mensagem, "erro");
           }
         } catch (err) {
-          // Usando o novo sistema de mensagens
           mostrarMensagem("❌ Não foi possível se conectar ao servidor. Tente novamente mais tarde.", "erro");
           console.error(err);
         }
