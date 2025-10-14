@@ -17,7 +17,6 @@
       pointer-events: none;
     }
     
-    /* Variáveis CSS para temas */
     :root {
       --bg-primary: #f7fafc;
       --bg-secondary: #ffffff;
@@ -44,7 +43,6 @@
       transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     }
     
-    /* Estilo para o aviso com animação de desaparecimento */
     #update-notice {
       transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
@@ -55,7 +53,6 @@
       pointer-events: none;
     }
     
-    /* Estilo para os ícones das redes sociais */
     .social-icon {
       width: 20px;
       height: 20px;
@@ -64,7 +61,6 @@
       margin-right: 5px;
     }
     
-    /* Estilo para o link da loja original */
     .original-store-link {
       color: #60a5fa;
       text-decoration: underline;
@@ -109,7 +105,6 @@
       to { transform: rotate(360deg); }
     }
     
-    /* Estilo para mensagens de status */
     .status-message {
       padding: 12px;
       border-radius: 8px;
@@ -135,7 +130,6 @@
       display: none;
     }
     
-    /* Estilos para alternância entre login e registro */
     .form-toggle {
       display: flex;
       justify-content: center;
@@ -178,7 +172,6 @@
       display: block;
     }
     
-    /* Container para mensagens flutuantes */
     .message-container {
       position: fixed;
       top: 100px;
@@ -190,20 +183,18 @@
 </head>
 <body class="theme-transition" style="background-color: var(--bg-primary); color: var(--text-primary);">
   
-  <!-- Container para mensagens flutuantes -->
   <div id="messageContainer" class="message-container"></div>
   
-  <!-- Navbar (cabeçalho idêntico ao do segundo código) -->
   <nav class="text-white shadow-lg fixed w-full top-0 z-40 theme-transition" style="background-image: var(--nav-bg);">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-extrabold tracking-wide">
-        <a href="index.html">JT Games Store</a>
+        <a href="../">JT Games Store</a>
       </h1>
       <ul class="hidden md:flex space-x-6 font-medium">
-        <li><a href="index.html" class="hover:text-gray-200">Início</a></li>
-        <li><a href="populares.html" class="hover:text-gray-200">Populares</a></li>
-        <li><a href="#" class="hover:text-gray-200">Novos</a></li>
-        <li><a href="categorias.html" class="hover:text-gray-200">Categorias</a></li>
+        <li><a href="../" class="hover:text-gray-200">Início</a></li>
+        <li><a href="../populares/" class="hover:text-gray-200">Populares</a></li>
+        <li><a href="../novos/" class="hover:text-gray-200">Novos</a></li>
+        <li><a href="../categorias/" class="hover:text-gray-200">Categorias</a></li>
       </ul>
       <div class="flex items-center space-x-4">
         <input type="text" placeholder="Buscar jogos..." class="hidden md:block p-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-white theme-transition" style="background-color: var(--bg-secondary); color: var(--text-primary);" />
@@ -212,24 +203,19 @@
     </div>
   </nav>
 
-  <!-- Espaço por causa da navbar fixa -->
   <div class="pt-24"></div>
 
-  <!-- Formulário de Login / Registro -->
   <section class="flex justify-center items-center min-h-[70vh] px-4">
     <div class="w-full max-w-md p-8 rounded-2xl shadow-xl theme-transition" style="background-color: var(--card-bg);">
       <h2 class="text-2xl font-bold mb-6 text-center">Acesse Sua Conta</h2>
       
-      <!-- Alternador entre Login e Registro -->
       <div class="form-toggle">
         <div class="toggle-btn active" id="login-toggle">Login</div>
         <div class="toggle-btn" id="register-toggle">Registrar</div>
       </div>
       
-      <!-- Área para mensagens de status -->
       <div id="status-message" class="status-message status-hidden"></div>
       
-      <!-- Formulário de Login -->
       <form id="login-form" class="form-section active">
         <div class="mb-4">
           <input type="email" id="emailInput" placeholder="Email" 
@@ -249,7 +235,6 @@
         </button>
       </form>
       
-      <!-- Formulário de Registro -->
       <form id="register-form" class="form-section">
         <div class="mb-4">
           <input type="text" id="nomeInput" placeholder="Nome" 
@@ -277,11 +262,9 @@
     </div>
   </section>
 
-  <!-- Script de Login e Tema -->
   <script>
     const BACKEND_URL = "https://eupyetro022.pythonanywhere.com";
     
-    // Elementos do DOM
     const loginForm = document.getElementById("login-form");
     const registerForm = document.getElementById("register-form");
     const emailInput = document.getElementById("emailInput");
@@ -293,7 +276,6 @@
     const loginToggle = document.getElementById("login-toggle");
     const registerToggle = document.getElementById("register-toggle");
     
-    // Função para mostrar mensagens flutuantes
     function mostrarMensagem(mensagem, tipo = 'sucesso') {
       const messageContainer = document.getElementById('messageContainer');
       const messageDiv = document.createElement('div');
@@ -307,13 +289,11 @@
       
       messageContainer.appendChild(messageDiv);
       
-      // Remove a mensagem após 5 segundos
       setTimeout(() => {
         messageDiv.remove();
       }, 5000);
     }
 
-    // Alternar entre login e registro
     loginToggle.addEventListener("click", () => {
       loginToggle.classList.add("active");
       registerToggle.classList.remove("active");
@@ -330,7 +310,6 @@
       hideStatusMessage();
     });
 
-    // Login
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       
@@ -343,7 +322,6 @@
       }
 
       try {
-        // Mostrar estado de carregamento
         const loginBtn = document.getElementById('login-btn');
         loginBtn.classList.add('btn-loading');
         loginBtn.disabled = true;
@@ -356,20 +334,17 @@
 
         const result = await response.json();
 
-        // Remover estado de carregamento
         loginBtn.classList.remove('btn-loading');
         loginBtn.disabled = false;
 
         if (result.status === "sucesso") {
-          // Salvar os dados do usuário
           localStorage.setItem("user", result.nome);
           localStorage.setItem("userEmail", email);
           
           mostrarMensagem("Login realizado com sucesso!", "sucesso");
           
-          // Redirecionar após breve delay
           setTimeout(() => {
-            window.location.href = "area-membros.html";
+            window.location.href = "../membros/";
           }, 1000);
         } else {
           mostrarMensagem(result.mensagem || "Erro no login", "erro");
@@ -377,7 +352,6 @@
 
       } catch (err) {
         console.error(err);
-        // Remover estado de carregamento em caso de erro
         const loginBtn = document.getElementById('login-btn');
         loginBtn.classList.remove('btn-loading');
         loginBtn.disabled = false;
@@ -386,7 +360,6 @@
       }
     });
 
-    // Registro
     registerForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       
@@ -400,7 +373,6 @@
       }
 
       try {
-        // Mostrar estado de carregamento
         const registerBtn = document.getElementById('register-btn');
         registerBtn.classList.add('btn-loading');
         registerBtn.disabled = true;
@@ -413,20 +385,17 @@
 
         const result = await response.json();
 
-        // Remover estado de carregamento
         registerBtn.classList.remove('btn-loading');
         registerBtn.disabled = false;
 
         if (result.status === "sucesso") {
-          // Salvar os dados do usuário
           localStorage.setItem("user", nome);
           localStorage.setItem("userEmail", email);
           
           mostrarMensagem("Registro realizado com sucesso!", "sucesso");
           
-          // Redirecionar após breve delay
           setTimeout(() => {
-            window.location.href = "area-membros.html";
+            window.location.href = "../membros/";
           }, 1000);
         } else {
           if (result.mensagem && result.mensagem.includes("já existe")) {
@@ -438,7 +407,6 @@
 
       } catch (err) {
         console.error(err);
-        // Remover estado de carregamento em caso de erro
         const registerBtn = document.getElementById('register-btn');
         registerBtn.classList.remove('btn-loading');
         registerBtn.disabled = false;
@@ -447,7 +415,6 @@
       }
     });
 
-    // Função para exibir mensagens de status (mantida para compatibilidade)
     function mostrarStatus(msg, tipo) {
       statusMessage.textContent = msg;
       statusMessage.className = `status-message ${tipo === "error" ? "status-error" : "status-success"}`;
@@ -458,14 +425,12 @@
       }, 4000);
     }
 
-    // Verificar se existe usuário salvo e buscar nome do backend
     async function verificarUsuarioSalvo() {
       const savedEmail = localStorage.getItem("userEmail");
       const savedName = localStorage.getItem("user");
       
       if (savedEmail && (!savedName || savedName === "null" || savedName === "undefined")) {
         try {
-          // Tentar buscar o nome do usuário do backend
           const response = await fetch(`${BACKEND_URL}/get-user-name`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -476,7 +441,6 @@
             const result = await response.json();
             if (result.status === "sucesso" && result.nome) {
               localStorage.setItem("user", result.nome);
-              console.log("Nome do usuário atualizado do backend:", result.nome);
             }
           }
         } catch (error) {
@@ -484,26 +448,23 @@
         }
       }
       
-      // Preencher email automaticamente se usuário já estiver logado
       if (savedEmail) {
         emailInput.value = savedEmail;
         emailRegInput.value = savedEmail;
       }
     }
 
-    // Verificar se o usuário já está logado e redirecionar
     function checkIfLoggedIn() {
       const user = localStorage.getItem('user');
       const userEmail = localStorage.getItem('userEmail');
       
       if (user && userEmail && user !== "null" && user !== "undefined") {
-        window.location.href = 'https://eupyetro0224234.github.io/JT-Games-Store';
+        window.location.href = '../membros/';
         return true;
       }
       return false;
     }
 
-    // Tema automático
     function detectColorScheme() {
       let theme = "light";
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -512,7 +473,6 @@
       document.documentElement.setAttribute('data-theme', theme);
     }
 
-    // Elementos do DOM para validação
     const emailError = document.getElementById('emailError');
     const senhaError = document.getElementById('senhaError');
     const nomeError = document.getElementById('nomeError');
@@ -520,7 +480,6 @@
     const senhaRegError = document.getElementById('senhaRegError');
     const loginBtnNav = document.getElementById('login-btn-nav');
 
-    // Função para mostrar mensagens de status
     function showStatusMessage(message, type) {
       statusMessage.textContent = message;
       statusMessage.className = 'status-message';
@@ -542,17 +501,14 @@
       statusMessage.classList.add('status-hidden');
     }
 
-    // Validação de formulário
     function validateForm() {
       let isValid = true;
       
-      // Reset errors
       emailError.classList.add('hidden');
       senhaError.classList.add('hidden');
       emailInput.classList.remove('input-error');
       senhaInput.classList.remove('input-error');
       
-      // Validate email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(emailInput.value)) {
         emailError.classList.remove('hidden');
@@ -560,7 +516,6 @@
         isValid = false;
       }
       
-      // Validate password
       if (senhaInput.value.length < 6) {
         senhaError.classList.remove('hidden');
         senhaInput.classList.add('input-error');
@@ -570,7 +525,6 @@
       return isValid;
     }
 
-    // Script para verificar se o usuário está logado e atualizar o botão de login
     function checkLogin() {
       const user = localStorage.getItem('user');
       const userEmail = localStorage.getItem('userEmail');
@@ -578,17 +532,16 @@
       if (user && userEmail && user !== "null" && user !== "undefined") {
         loginBtnNav.textContent = `Olá, ${user}`;
         loginBtnNav.onclick = () => {
-          window.location.href = 'area-membros.html';
+          window.location.href = '../membros/';
         }
       } else {
         loginBtnNav.textContent = 'Login';
         loginBtnNav.onclick = () => {
-          window.location.href = 'login.html';
+          window.location.href = '../login/';
         }
       }
     }
 
-    // Remove error styles when user starts typing
     emailInput.addEventListener('input', () => {
       emailInput.classList.remove('input-error');
       emailError.classList.add('hidden');
@@ -619,22 +572,17 @@
       hideStatusMessage();
     });
 
-    // Inicialização quando a página carrega
     window.addEventListener('DOMContentLoaded', async () => {
-      // Configurar tema
       detectColorScheme();
       const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
       colorSchemeQuery.addEventListener('change', e => {
         document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
       });
       
-      // Verificar se está logado e redirecionar se necessário
       if (!checkIfLoggedIn()) {
-        // Se não está logado, verificar se tem dados salvos e buscar nome do backend
         await verificarUsuarioSalvo();
       }
       
-      // Atualizar botão de login
       checkLogin();
     });
 
