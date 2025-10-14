@@ -11,6 +11,13 @@
     body { 
       font-family: 'Inter', sans-serif;
       transition: background-color 0.3s, color 0.3s;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    .main-content {
+      flex: 1;
     }
     
     /* Variáveis CSS para temas */
@@ -81,44 +88,47 @@
     </div>
   </nav>
 
-  <!-- Espaço por causa da navbar fixa -->
-  <div class="pt-24"></div>
+  <!-- Conteúdo principal com classe para flexibilidade -->
+  <div class="main-content">
+    <!-- Espaço por causa da navbar fixa -->
+    <div class="pt-24"></div>
 
-  <!-- Cabeçalho da página de populares -->
-  <div class="max-w-7xl mx-auto px-6 mb-10">
-    <h1 class="text-3xl font-bold mb-2">Jogos Populares</h1>
-    <p class="text-lg theme-transition" style="color: var(--text-secondary);">O jogo mais popular da JT Games Store</p>
-  </div>
+    <!-- Cabeçalho da página de populares -->
+    <div class="max-w-7xl mx-auto px-6 mb-10">
+      <h1 class="text-3xl font-bold mb-2">Jogos Populares</h1>
+      <p class="text-lg theme-transition" style="color: var(--text-secondary);">O jogo mais popular da JT Games Store</p>
+    </div>
 
-  <!-- Seção de Jogos Populares -->
-  <main class="max-w-7xl mx-auto px-6 mb-16">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    <!-- Seção de Jogos Populares -->
+    <main class="max-w-7xl mx-auto px-6 mb-16">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 
-      <!-- Cuphead -->
-      <div class="rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden theme-transition" style="background-color: var(--card-bg);">
-        <div class="relative">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDYVrtJU9Sto-xkAXZNoYfbVactu-RBfOccKBfp_w6XLJ9lBKohUwZlxw&s=10" alt="Cuphead" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
-          <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-lg">🔥 #1 Popular</span>
-        </div>
-        <div class="p-4">
-          <div class="flex justify-between items-start">
-            <h3 class="font-bold text-lg">Cuphead</h3>
-            <div class="flex items-center bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-bold">
-              ★ 4.9
+        <!-- Cuphead -->
+        <div class="rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden theme-transition" style="background-color: var(--card-bg);">
+          <div class="relative">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDYVrtJU9Sto-xkAXZNoYfbVactu-RBfOccKBfp_w6XLJ9lBKohUwZlxw&s=10" alt="Cuphead" class="h-48 w-full object-cover transform hover:scale-105 transition duration-300" />
+            <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-lg">🔥 #1 Popular</span>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-lg">Cuphead</h3>
+              <div class="flex items-center bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-bold">
+                ★ 4.9
+              </div>
+            </div>
+            <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Versão completa com a DLC inclusa!</p>
+            <div class="flex justify-between items-center mt-4">
+              <a href="Cuphead.html" class="text-white px-4 py-2 rounded-lg text-sm hover:opacity-90 transition theme-transition" style="background-image: var(--nav-bg);">Ver Detalhes</a>
             </div>
           </div>
-          <p class="text-sm mt-1 theme-transition" style="color: var(--text-secondary);">Versão completa com a DLC inclusa!</p>
-          <div class="flex justify-between items-center mt-4">
-            <a href="Cuphead.html" class="text-white px-4 py-2 rounded-lg text-sm hover:opacity-90 transition theme-transition" style="background-image: var(--nav-bg);">Ver Detalhes</a>
-          </div>
         </div>
-      </div>
 
-    </div>
-  </main>
+      </div>
+    </main>
+  </div>
 
   <!-- Rodapé -->
-  <footer class="mt-16 py-10 theme-transition" style="background-color: var(--footer-bg); color: var(--footer-text);">
+  <footer class="py-10 theme-transition" style="background-color: var(--footer-bg); color: var(--footer-text);">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
       <div>
         <h3 class="font-bold text-lg">JT Games Store</h3>
