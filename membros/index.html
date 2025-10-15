@@ -62,11 +62,6 @@
       font-size: 0.875rem;
       margin-top: 0.25rem;
     }
-    .success-message {
-      color: #38a169;
-      font-size: 0.875rem;
-      margin-top: 0.25rem;
-    }
     .message-container {
       position: fixed;
       top: 100px;
@@ -78,20 +73,19 @@
 </head>
 <body class="theme-transition" style="background-color: var(--bg-primary); color: var(--text-primary);">
 
-  <!-- Container para mensagens -->
   <div id="messageContainer" class="message-container"></div>
 
   <!-- Navbar -->
   <nav class="text-white shadow-lg fixed w-full top-0 z-50 theme-transition" style="background-image: var(--nav-bg);">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-extrabold tracking-wide">
-        <a href="index.html">JT Games Store</a>
+        <a href="../">JT Games Store</a>
       </h1>
       <ul class="hidden md:flex space-x-6 font-medium">
-        <li><a href="index.html" class="hover:text-gray-200 font-bold underline">Início</a></li>
-        <li><a href="populares.html" class="hover:text-gray-200">Populares</a></li>
+        <li><a href="../" class="hover:text-gray-200 font-bold underline">Início</a></li>
+        <li><a href="../populares/" class="hover:text-gray-200">Populares</a></li>
         <li><a href="#" class="hover:text-gray-200">Novos</a></li>
-        <li><a href="categorias.html" class="hover:text-gray-200">Categorias</a></li>
+        <li><a href="../categorias/" class="hover:text-gray-200">Categorias</a></li>
       </ul>
       <div class="flex items-center space-x-4">
         <input type="text" placeholder="Buscar jogos..." class="hidden md:block p-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-white theme-transition" style="background-color: var(--bg-secondary); color: var(--text-primary);" />
@@ -101,10 +95,8 @@
     </div>
   </nav>
 
-  <!-- Espaço por causa da navbar fixa -->
   <div class="pt-24"></div>
 
-  <!-- Conteúdo Área de Membros -->
   <section class="max-w-7xl mx-auto px-6 mt-12">
     <div class="rounded-2xl shadow-xl p-8 theme-transition" style="background-color: var(--card-bg);">
       <h2 class="text-2xl font-bold mb-4" id="welcomeMsg">Bem-vindo!</h2>
@@ -123,7 +115,7 @@
     </div>
   </section>
 
-  <!-- Modal para editar nome -->
+  <!-- Modal -->
   <div id="editNameModal" class="modal">
     <div class="modal-content">
       <h3 class="text-xl font-bold mb-4">Alterar Nome</h3>
@@ -133,7 +125,7 @@
           <input type="text" id="newName" class="w-full p-2 rounded border theme-transition" style="background-color: var(--bg-secondary); color: var(--text-primary); border-color: var(--text-secondary);" required maxlength="10">
           <div id="nameError" class="error-message hidden"></div>
           <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
-            Máximo 10 caracteres. Permitidos: letras, números, _ e . (não pode começar com caracteres especiais)
+            Máximo 10 caracteres. Permitidos: letras, números, _ e .
           </p>
         </div>
         <div class="flex justify-end gap-2">
@@ -144,72 +136,39 @@
     </div>
   </div>
 
-  <!-- Script -->
   <script>
-    // Configuração do backend - APONTANDO PARA SEU PYTHONANYWHERE
     const BACKEND_URL = 'https://eupyetro022.pythonanywhere.com';
 
-    // Função para mostrar mensagens na interface
     function mostrarMensagem(mensagem, tipo = 'sucesso') {
       const messageContainer = document.getElementById('messageContainer');
       const messageDiv = document.createElement('div');
-      
       messageDiv.className = `p-4 rounded-lg shadow-lg mb-2 theme-transition ${
-        tipo === 'sucesso' 
-          ? 'bg-green-500 text-white' 
-          : 'bg-red-500 text-white'
+        tipo === 'sucesso' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
       }`;
       messageDiv.textContent = mensagem;
-      
       messageContainer.appendChild(messageDiv);
-      
-      // Remove a mensagem após 5 segundos
-      setTimeout(() => {
-        messageDiv.remove();
-      }, 5000);
+      setTimeout(() => messageDiv.remove(), 5000);
     }
 
-    // Função para validar o nome
     function validarNome(nome) {
-      // Verifica se está vazio
-      if (!nome || nome.trim() === '') {
-        return { valido: false, mensagem: 'O nome não pode estar vazio' };
-      }
-
-      // Verifica comprimento máximo
-      if (nome.length > 10) {
-        return { valido: false, mensagem: 'O nome deve ter no máximo 10 caracteres' };
-      }
-
-      // Verifica se começa com caractere especial (exceto letra ou número)
-      const primeiroCaractere = nome.charAt(0);
-      if (!/^[a-zA-Z0-9]/.test(primeiroCaractere)) {
-        return { valido: false, mensagem: 'O nome não pode começar com caracteres especiais' };
-      }
-
-      // Verifica caracteres permitidos (letras, números, _ e .)
-      const regex = /^[a-zA-Z0-9_.]+$/;
-      if (!regex.test(nome)) {
-        return { valido: false, mensagem: 'Apenas letras, números, _ e . são permitidos' };
-      }
-
+      if (!nome || nome.trim() === '') return { valido: false, mensagem: 'O nome não pode estar vazio' };
+      if (nome.length > 10) return { valido: false, mensagem: 'Máx. 10 caracteres' };
+      if (!/^[a-zA-Z0-9]/.test(nome.charAt(0))) return { valido: false, mensagem: 'Não pode começar com caractere especial' };
+      if (!/^[a-zA-Z0-9_.]+$/.test(nome)) return { valido: false, mensagem: 'Apenas letras, números, _ e .' };
       return { valido: true, mensagem: '' };
     }
 
-    // Tema automático
     function detectColorScheme() {
       let theme = "light";
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) theme = "dark";
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) theme = "dark";
       document.documentElement.setAttribute('data-theme', theme);
     }
     const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
     colorSchemeQuery.addEventListener('change', e => document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light'));
     detectColorScheme();
 
-    // Usuário logado
     const user = localStorage.getItem('user');
     const email = localStorage.getItem('userEmail');
-
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.getElementById('logoutBtn');
     const editNameBtn = document.getElementById('editNameBtn');
@@ -220,8 +179,7 @@
     const nameError = document.getElementById('nameError');
 
     if (!email) {
-      // Redireciona para login se não estiver logado
-      window.location.href = 'login.html';
+      window.location.href = '../login/';
     } else {
       document.getElementById('welcomeMsg').textContent = `Bem-vindo, ${user}!`;
       document.getElementById('userEmail').textContent = email;
@@ -230,14 +188,12 @@
       loginBtn.style.display = 'none';
     }
 
-    // Logoff
     logoutBtn.addEventListener('click', () => {
       localStorage.removeItem('user');
       localStorage.removeItem('userEmail');
-      window.location.href = 'index.html';
+      window.location.href = '../';
     });
 
-    // Abrir modal para editar nome
     editNameBtn.addEventListener('click', () => {
       newNameInput.value = user;
       nameError.classList.add('hidden');
@@ -245,23 +201,12 @@
       editNameModal.style.display = 'flex';
     });
 
-    // Fechar modal
-    cancelEdit.addEventListener('click', () => {
-      editNameModal.style.display = 'none';
-    });
+    cancelEdit.addEventListener('click', () => editNameModal.style.display = 'none');
+    window.addEventListener('click', (e) => { if (e.target === editNameModal) editNameModal.style.display = 'none'; });
 
-    // Fechar modal ao clicar fora
-    window.addEventListener('click', (e) => {
-      if (e.target === editNameModal) {
-        editNameModal.style.display = 'none';
-      }
-    });
-
-    // Validação em tempo real enquanto digita
     newNameInput.addEventListener('input', () => {
       const nome = newNameInput.value.trim();
       const validacao = validarNome(nome);
-      
       if (!validacao.valido && nome.length > 0) {
         nameError.textContent = validacao.mensagem;
         nameError.classList.remove('hidden');
@@ -272,66 +217,38 @@
       }
     });
 
-    // Enviar formulário para alterar nome
     editNameForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
       const newName = newNameInput.value.trim();
-      
-      // Validação final antes de enviar
       const validacao = validarNome(newName);
       if (!validacao.valido) {
         nameError.textContent = validacao.mensagem;
         nameError.classList.remove('hidden');
         newNameInput.classList.add('input-error');
-        newNameInput.focus();
         return;
       }
 
       try {
-        console.log('Enviando requisição para:', `${BACKEND_URL}/update-name`);
-        
-        // Chamada para o backend para atualizar o nome
         const response = await fetch(`${BACKEND_URL}/update-name`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: email,
-            newName: newName
-          })
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, newName: newName })
         });
-
-        console.log('Status da resposta:', response.status);
-
         const result = await response.json();
-        console.log('Resultado:', result);
-
         if (response.ok && result.status === 'sucesso') {
-          // Atualiza o nome no localStorage
           localStorage.setItem('user', newName);
-          
-          // Atualiza a interface
           document.getElementById('welcomeMsg').textContent = `Bem-vindo, ${newName}!`;
           document.getElementById('currentName').textContent = newName;
-          
-          // Fecha o modal
           editNameModal.style.display = 'none';
-          
-          // Mostra mensagem de sucesso na interface
           mostrarMensagem('Nome alterado com sucesso!', 'sucesso');
         } else {
-          // Mostra mensagem de erro na interface
-          mostrarMensagem(result.mensagem || 'Erro ao alterar o nome. Tente novamente.', 'erro');
+          mostrarMensagem(result.mensagem || 'Erro ao alterar o nome.', 'erro');
         }
-      } catch (error) {
-        console.error('Erro detalhado:', error);
-        // Mostra mensagem de erro na interface
-        mostrarMensagem('Erro de conexão. Verifique sua conexão com a internet e tente novamente.', 'erro');
+      } catch {
+        mostrarMensagem('Erro de conexão.', 'erro');
       }
     });
   </script>
 
 </body>
-  </html>
+</html>
